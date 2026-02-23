@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="quiz-container">
+        
+        <!-- Start Screen -->
+        <div class="start-screen" id="startScreen">
+            <div class="quiz-logo">💡</div>
+            <h1>Quiz Time!</h1>
+            <p>Test your knowledge with 5 questions</p>
+            <button class="start-btn" id="startBtn">Start Quiz</button>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="quiz-screen hidden" id="question1">
+            <div class="quiz-header">
+                <div class="question-count">
+                    Question <span class="current-q">1</span> of <span>5</span>
+                </div>
+                <div class="score-display">
+                    Score: <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-box">
+                <h2>What does HTML stand for?</h2>
+            </div>
+            <div class="options-container">
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">Hyper Text Makeup Language</span>
+                </button>
+                <button class="option-btn" data-correct="true">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">Hyper Text Markup Language</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">High Tech Modern Language</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">Home Tool Markup Language</span>
+                </button>
+            </div>
+            <button class="next-btn" data-next="question2" disabled>Next Question</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-screen hidden" id="question2">
+            <div class="quiz-header">
+                <div class="question-count">
+                    Question <span class="current-q">2</span> of <span>5</span>
+                </div>
+                <div class="score-display">
+                    Score: <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-box">
+                <h2>Which CSS property is used to change text color?</h2>
+            </div>
+            <div class="options-container">
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">text-color</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">font-color</span>
+                </button>
+                <button class="option-btn" data-correct="true">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">color</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">text-style</span>
+                </button>
+            </div>
+            <button class="next-btn" data-next="question3" disabled>Next Question</button>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-screen hidden" id="question3">
+            <div class="quiz-header">
+                <div class="question-count">
+                    Question <span class="current-q">3</span> of <span>5</span>
+                </div>
+                <div class="score-display">
+                    Score: <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-box">
+                <h2>Which symbol is used for ID selector in CSS?</h2>
+            </div>
+            <div class="options-container">
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">. (dot)</span>
+                </button>
+                <button class="option-btn" data-correct="true">
+                    <span class="option-letter">B</span>
+                    <span class="option-text"># (hash)</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">@ (at)</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">* (asterisk)</span>
+                </button>
+            </div>
+            <button class="next-btn" data-next="question4" disabled>Next Question</button>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="quiz-screen hidden" id="question4">
+            <div class="quiz-header">
+                <div class="question-count">
+                    Question <span class="current-q">4</span> of <span>5</span>
+                </div>
+                <div class="score-display">
+                    Score: <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-box">
+                <h2>What is the correct HTML tag for largest heading?</h2>
+            </div>
+            <div class="options-container">
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">&lt;heading&gt;</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">&lt;h6&gt;</span>
+                </button>
+                <button class="option-btn" data-correct="true">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">&lt;h1&gt;</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">&lt;head&gt;</span>
+                </button>
+            </div>
+            <button class="next-btn" data-next="question5" disabled>Next Question</button>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="quiz-screen hidden" id="question5">
+            <div class="quiz-header">
+                <div class="question-count">
+                    Question <span class="current-q">5</span> of <span>5</span>
+                </div>
+                <div class="score-display">
+                    Score: <span class="score">0</span>
+                </div>
+            </div>
+            <div class="question-box">
+                <h2>Which property is used to make text bold in CSS?</h2>
+            </div>
+            <div class="options-container">
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">A</span>
+                    <span class="option-text">text-weight: bold</span>
+                </button>
+                <button class="option-btn" data-correct="true">
+                    <span class="option-letter">B</span>
+                    <span class="option-text">font-weight: bold</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">C</span>
+                    <span class="option-text">font-style: bold</span>
+                </button>
+                <button class="option-btn" data-correct="false">
+                    <span class="option-letter">D</span>
+                    <span class="option-text">text-bold: true</span>
+                </button>
+            </div>
+            <button class="next-btn" data-next="resultScreen" disabled>See Results</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="result-screen hidden" id="resultScreen">
+            <div class="result-emoji" id="resultEmoji">🎉</div>
+            <h2 id="resultTitle">Quiz Complete!</h2>
+            <div class="final-score">
+                <p>Your Score</p>
+                <h1 id="finalScore">0/5</h1>
+            </div>
+            <div class="result-message" id="resultMessage">
+                You got 0% correct!
+            </div>
+            <button class="restart-btn" id="restartBtn">Play Again</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

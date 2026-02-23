@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Theme Toggle -->
+        <div class="toggle-wrapper">
+            <span class="icon">🌤️</span>
+            <label class="toggle">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="icon">🌙</span>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="content">
+            <h1>❄️ Theme Switcher</h1>
+            <p class="subtitle">Your preference is saved automatically</p>
+
+            <div class="card">
+                <h2>Welcome!</h2>
+                <p>Toggle the switch above to change between light and dark mode. Your preference will be remembered even after you close the browser!</p>
+            </div>
+
+            <div class="card">
+                <h2>How it works</h2>
+                <p>We use localStorage to save your theme preference. Next time you visit, the theme loads automatically.</p>
+            </div>
+
+            <div class="buttons">
+                <button class="btn primary">Primary Button</button>
+                <button class="btn secondary">Secondary Button</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

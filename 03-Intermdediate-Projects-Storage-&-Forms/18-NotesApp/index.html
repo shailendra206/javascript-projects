@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Notes App</h1>
+        <p class="subtitle">Your notes are saved automatically</p>
+
+        <!-- Add Note Section -->
+        <div class="add-note-section">
+            <textarea 
+                id="noteInput" 
+                placeholder="Write your note here..."
+                rows="4"
+            ></textarea>
+            <button class="btn-add" id="addNoteBtn">+ Add Note</button>
+        </div>
+
+        <!-- Notes Grid -->
+        <div class="notes-grid" id="notesGrid">
+            <!-- Notes will be added here dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📭</div>
+            <p>No notes yet. Start writing!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

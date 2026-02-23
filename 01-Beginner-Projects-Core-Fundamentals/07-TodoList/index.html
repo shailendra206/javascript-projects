@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="todo-wrapper">
+            
+            <!-- Header -->
+            <div class="header">
+                <h1>📝 My Todo List</h1>
+
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <input 
+                    type="text" 
+                    class="todo-input" 
+                    id="todoInput" 
+                    placeholder="Add a new task..."
+                >
+                <button class="add-btn">
+                    <span class="plus-icon">+</span>
+                </button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="tab active" data-filter="all">
+                    All 
+                    <!-- <span class="count" id="allCount">0</span> -->
+                </button>
+                <button class="tab" data-filter="active">
+                    Active 
+                    <!-- <span class="count" id="activeCount">0</span> -->
+                </button>
+                <button class="tab" data-filter="completed">
+                    Completed 
+                    <!-- <span class="count" id="completedCount">0</span> -->
+                </button>
+            </div>
+
+            <!-- Todo List -->
+            <ul class="todo-list" id="todoList">
+                <!-- Li -->
+            </ul>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#cbd5e1" stroke-width="2"/>
+                    <path d="M12 8V12L14.5 14.5" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <p>No tasks yet!</p>
+                <span>Add a task to get started</span>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="footer-actions">
+                <button class="clear-btn">
+                    Clear Completed
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

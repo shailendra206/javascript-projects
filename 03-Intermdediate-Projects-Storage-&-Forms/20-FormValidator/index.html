@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <div class="icon">🚀</div>
+            <h1>Create Account</h1>
+            <p>Fill in the details below</p>
+        </div>
+
+        <form class="form" id="signupForm">
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    placeholder="johndoe"
+                >
+                <span class="error-msg" id="usernameError"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="text" 
+                    id="email" 
+                    placeholder="you@example.com"
+                >
+                <span class="error-msg" id="emailError"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Min 6 characters"
+                >
+                <span class="error-msg" id="passwordError"></span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input 
+                    type="password" 
+                    id="confirmPassword" 
+                    placeholder="Re-enter password"
+                >
+                <span class="error-msg" id="confirmError"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">Create Account</button>
+        </form>
+
+        <p class="login-link">Already have an account? <a href="#">Log in</a></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

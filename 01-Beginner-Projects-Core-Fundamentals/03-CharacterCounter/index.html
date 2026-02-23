@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Glass Card -->
+        <div class="glass-card">
+            
+            <!-- Header -->
+            <div class="header">
+                <span class="badge">Pro Tool</span>
+                <h1>Character Counter</h1>
+                <p>Beautiful way to count your text</p>
+            </div>
+
+            <!-- Textarea -->
+            <div class="textarea-container">
+                <textarea 
+                    id="textArea" 
+                    placeholder="Start typing something amazing..."
+                    spellcheck="false"
+                ></textarea>
+                <div class="textarea-glow"></div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="characters">0</span>
+                    <span class="stat-label">Characters</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-value" id="words">0</span>
+                    <span class="stat-label">Words</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-value" id="sentences">0</span>
+                    <span class="stat-label">Sentences</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">Crafted with 💜 for writers</p>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

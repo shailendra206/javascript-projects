@@ -1,0 +1,233 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Circles */
+body::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: -250px;
+  right: -250px;
+  animation: float 6s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  bottom: -200px;
+  left: -200px;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Counter Card - Glassmorphism Effect */
+.counter-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 50px 60px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-width: 450px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.counter-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Header */
+.header h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+/* Counter Display */
+.counter-display {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 30px 0;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#counter {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  flex: 1;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Decrease Button */
+.btn-decrease {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.btn-decrease:hover {
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+}
+
+/* Reset Button */
+.btn-reset {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.btn-reset:hover {
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+/* Increase Button */
+.btn-increase {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.btn-increase:hover {
+  background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+  box-shadow: 0 6px 20px rgba(67, 233, 123, 0.4);
+}
+
+.btn-text {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-text {
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.highlight {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .counter-card {
+    min-width: 90%;
+    padding: 40px 30px;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  #counter {
+    font-size: 4rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Animation for counter change */
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop {
+  animation: pop 0.3s ease;
+}

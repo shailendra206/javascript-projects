@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="timer-container">
+        
+        <h1>Countdown Timer</h1>
+        <p class="subtitle">Traget Date : 5th Jan 2026 '05:45:00'</p>
+
+        <!-- Countdown Display -->
+        <div class="countdown">
+            <div class="time-unit">
+                <span class="number" id="days">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-unit">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-unit">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Minutes</span>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-unit">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Seconds</span>
+            </div>
+        </div>
+
+        <!-- Message when countdown ends -->
+        <div class="message" id="message">Yay !! It's celebration Time.</div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ========== RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== BODY ========== */
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background decoration circles */
+body::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -200px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(30px);
+    }
+}
+
+/* ========== CONTAINER ========== */
+.container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ========== TODO WRAPPER ========== */
+.todo-wrapper {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* ========== HEADER (Purple Gradient) ========== */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 35px 30px;
+    text-align: center;
+}
+
+.header h1 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.date {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ========== INPUT SECTION ========== */
+.input-section {
+    padding: 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.todo-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.todo-input::placeholder {
+    color: #94a3b8;
+}
+
+.add-btn {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+.plus-icon {
+    line-height: 1;
+}
+
+/* ========== FILTER TABS ========== */
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 0 30px 20px 30px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tab:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    color: white;
+}
+
+.count {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.tab.active .count {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.tab:not(.active) .count {
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+/* ========== TODO LIST ========== */
+.todo-list {
+    list-style: none;
+    padding: 20px 30px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+.todo-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ========== TODO ITEM ========== */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.todo-item:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+}
+
+/* Hide filtered items */
+.todo-item.hidden {
+    display: none;
+}
+
+.todo-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+/* ========== CUSTOM CHECKBOX ========== */
+.checkbox {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.3s ease;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.checkbox:hover {
+    border-color: #667eea;
+}
+
+.checkbox:checked {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+}
+
+.checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ========== TODO TEXT ========== */
+.todo-text {
+    font-size: 1rem;
+    color: #1e293b;
+    cursor: pointer;
+    user-select: none;
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.checkbox:checked + .todo-text {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+/* ========== DELETE BUTTON ========== */
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+    text-align: center;
+    padding: 60px 30px;
+    color: #94a3b8;
+}
+
+.empty-state svg {
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.empty-state span {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* ========== FOOTER ACTIONS (RED BUTTON - NOT BLUE!) ========== */
+.footer-actions {
+    padding: 20px 30px 30px 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.clear-btn {
+    background: transparent;
+    border: 2px solid #fecaca;  /* ← PINK/RED, NOT BLUE! */
+    color: #ef4444;              /* ← RED TEXT */
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.clear-btn:hover {
+    background: #fef2f2;  /* ← LIGHT RED */
+    border-color: #ef4444;
+    transform: translateY(-2px);
+}
+
+.clear-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 640px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .input-section {
+        padding: 20px;
+    }
+
+    .filter-tabs {
+        padding: 0 20px 15px 20px;
+        gap: 8px;
+    }
+
+    .tab {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+
+    .todo-list {
+        padding: 15px 20px;
+    }
+
+    .todo-item {
+        padding: 14px 16px;
+    }
+
+    .todo-text {
+        font-size: 0.95rem;
+    }
+
+    .footer-actions {
+        padding: 15px 20px 25px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 25px 20px;
+    }
+
+    .header h1 {
+        font-size: 1.3rem;
+    }
+
+    .date {
+        font-size: 0.85rem;
+    }
+
+    .add-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .filter-tabs {
+        flex-direction: column;
+    }
+
+    .tab {
+        width: 100%;
+    }
+}

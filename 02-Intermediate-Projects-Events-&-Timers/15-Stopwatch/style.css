@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #feca57 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ========== FLOATING SHAPES ========== */
+.shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation: float 15s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 250px;
+    height: 250px;
+    background: #a8edea;
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    background: #fed6e3;
+    top: 60%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+/* ========== CONTAINER ========== */
+.stopwatch-container {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ========== HEADER ========== */
+.watch-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.watch-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 3px;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background: #f5576c;
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+/* ========== RECTANGULAR WATCH DISPLAY ========== */
+.watch-display {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: 25px;
+    padding: 60px 40px;
+    margin-bottom: 40px;
+    box-shadow: 
+        0 15px 50px rgba(59, 130, 246, 0.4),
+        inset 0 0 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated shine effect */
+.watch-display::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px 30px;
+    border-radius: 20px;
+    min-width: 150px;
+    position: relative;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.time-box span:first-child {
+    font-family: 'Orbitron', monospace;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 40px rgba(255, 255, 255, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1;
+}
+
+.label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.separator {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: blink 1.5s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ========== CONTROLS ========== */
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.btn {
+    padding: 20px 20px;
+    border: none;
+    border-radius: 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.icon {
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.btn span:last-child {
+    position: relative;
+    z-index: 1;
+}
+
+/* START Button */
+.btn-start {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: white;
+    box-shadow: 0 10px 30px rgba(67, 233, 123, 0.4);
+}
+
+.btn-start:hover:not(:disabled) {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(67, 233, 123, 0.6);
+}
+
+/* STOP Button */
+.btn-stop {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
+}
+
+.btn-stop:hover:not(:disabled) {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(240, 147, 251, 0.6);
+}
+
+/* RESET Button */
+.btn-reset {
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+    color: white;
+    box-shadow: 0 10px 30px rgba(254, 202, 87, 0.4);
+}
+
+.btn-reset:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(254, 202, 87, 0.6);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.95);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .stopwatch-container {
+        padding: 40px 30px;
+    }
+
+    .watch-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .watch-display {
+        padding: 40px 20px;
+        gap: 15px;
+    }
+
+    .time-box {
+        min-width: 110px;
+        padding: 20px 15px;
+    }
+
+    .time-box span:first-child {
+        font-size: 3rem;
+    }
+
+    .separator {
+        font-size: 3rem;
+    }
+
+    .label {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .btn {
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px;
+    }
+
+    .watch-display {
+        flex-wrap: wrap;
+    }
+
+    .time-box {
+        min-width: 90px;
+    }
+
+    .time-box span:first-child {
+        font-size: 2.5rem;
+    }
+
+    .separator {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .stopwatch-container {
+        padding: 30px 20px;
+    }
+
+    .time-box span:first-child {
+        font-size: 2rem;
+    }
+}

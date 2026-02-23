@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Auto-Slideshow</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Full Screen Slideshow -->
+    <div class="slideshow" id="slideshow">
+        
+        <!-- Progress Bar - Top Edge -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <!-- Slides -->
+        <div class="slides-wrapper" id="slidesWrapper">
+            
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-bg">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600" alt="Mountains">
+                </div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="tag">Adventure</span>
+                    <h1>Explore The Mountains</h1>
+                    <p>Discover breathtaking peaks and pristine wilderness in the heart of nature's grandest spectacle.</p>
+                    <a href="#" class="cta-btn">
+                        Discover More
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-bg">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600" alt="Beach">
+                </div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="tag">Paradise</span>
+                    <h1>Tropical Beach Vibes</h1>
+                    <p>Crystal clear waters and golden sands await you in these untouched island paradises.</p>
+                    <a href="#" class="cta-btn">
+                        Explore Now
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-bg">
+                    <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1600" alt="City">
+                </div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="tag">Urban</span>
+                    <h1>City Night Lights</h1>
+                    <p>Experience the electric energy of metropolitan nightlife where every street tells a story.</p>
+                    <a href="#" class="cta-btn">
+                        View Gallery
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-bg">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600" alt="Lake">
+                </div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <span class="tag">Nature</span>
+                    <h1>Serene Lake Views</h1>
+                    <p>Find peace in the mirror-like waters reflecting endless skies and towering mountains.</p>
+                    <a href="#" class="cta-btn">
+                        Learn More
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Side Navigation - Left Edge -->
+        <!-- <nav class="side-nav left">
+            <button class="nav-arrow prev" id="prevBtn" aria-label="Previous">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+        </nav> -->
+
+        <!-- Side Navigation - Right Edge -->
+        <!-- <nav class="side-nav right">
+            <button class="nav-arrow next" id="nextBtn" aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </nav> -->
+
+        <!-- Bottom Controls Bar -->
+        <div class="controls-bar">
+            
+            <!-- Play/Pause -->
+            <!-- <button class="control-btn play-pause" id="playPauseBtn" aria-label="Pause">
+                <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"/>
+                    <rect x="14" y="4" width="4" height="16"/>
+                </svg>
+                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+            </button> -->
+
+            <!-- Dots -->
+            <div class="dots" id="dotsContainer">
+                <button class="dot active" data-index="0"><span></span></button>
+                <button class="dot" data-index="1"><span></span></button>
+                <button class="dot" data-index="2"><span></span></button>
+                <button class="dot" data-index="3"><span></span></button>
+            </div>
+
+            <!-- Counter -->
+            <div class="counter">
+                <span class="current" id="currentSlide">01</span>
+                <span class="divider">/</span>
+                <span class="total" id="totalSlides">04</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

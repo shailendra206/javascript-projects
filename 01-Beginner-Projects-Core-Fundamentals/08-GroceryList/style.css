@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background decoration */
+body::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -200px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(30px);
+    }
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 550px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Grocery Card */
+.grocery-card {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 35px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icon {
+    font-size: 3.5rem;
+    animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.header-content h1 {
+    font-size: 2rem;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* ========== INPUT SECTION ========== */
+.input-wrapper {
+    padding: 30px;
+    background: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+}
+
+.grocery-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.grocery-input:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.grocery-input::placeholder {
+    color: #9ca3af;
+}
+
+.add-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.add-btn:active {
+    transform: translateY(0);
+}
+
+/* ========== LIST SECTION ========== */
+.list-container {
+    padding: 30px;
+    min-height: 300px;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.list-header h3 {
+    font-size: 1.2rem;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.item-count {
+    background: #f3f4f6;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+#itemCount {
+    color: #10b981;
+    font-weight: 800;
+}
+
+/* ========== GROCERY LIST ========== */
+.grocery-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.grocery-item {
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.grocery-item:hover {
+    background: white;
+    border-color: #d1d5db;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.grocery-item.checked {
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+
+.grocery-item.checked .item-text {
+    text-decoration: line-through;  /* ← This adds the line! */
+    color: #9ca3af;  /* Makes text gray */
+}
+
+.item-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+/* Custom Checkbox */
+.item-checkbox {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.3s ease;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.item-checkbox:hover {
+    border-color: #10b981;
+}
+
+.item-checkbox:checked {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-color: transparent;
+}
+
+.item-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item-text {
+    font-size: 1rem;
+    color: #1f2937;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.grocery-item.checked .item-text {
+    text-decoration: line-through;
+    color: #9ca3af;
+}
+
+/* Item Actions */
+.item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn {
+    color: #3b82f6;
+}
+
+.edit-btn:hover {
+    background: #dbeafe;
+}
+
+.delete-btn {
+    color: #ef4444;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+}
+
+/* ========== EMPTY STATE ========== */
+.empty-state {
+    text-align: center;
+    padding: 60px 30px;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.empty-state span {
+    font-size: 0.95rem;
+    color: #9ca3af;
+}
+
+/* ========== FOOTER ACTIONS ========== */
+.footer-actions {
+    padding: 20px 30px 30px 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.footer-actions button {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.clear-all-btn {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 2px solid #fecaca;
+}
+
+.clear-all-btn:hover {
+    background: #fecaca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+.clear-checked-btn {
+    background: #dbeafe;
+    color: #2563eb;
+    border: 2px solid #bfdbfe;
+}
+
+.clear-checked-btn:hover {
+    background: #bfdbfe;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.footer-actions button:active {
+    transform: translateY(0);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 640px) {
+    .grocery-card {
+        border-radius: 0;
+    }
+
+    .header {
+        padding: 30px 20px;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .header-icon {
+        font-size: 3rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .input-wrapper {
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .add-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .list-container {
+        padding: 20px;
+    }
+
+    .footer-actions {
+        flex-direction: column;
+        padding: 15px 20px 25px 20px;
+    }
+
+    .footer-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .grocery-input {
+        font-size: 0.95rem;
+    }
+
+    .item-text {
+        font-size: 0.95rem;
+    }
+}

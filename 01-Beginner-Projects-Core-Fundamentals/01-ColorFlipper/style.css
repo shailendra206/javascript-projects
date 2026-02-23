@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background elements */
+body::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    top: -200px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -150px;
+    left: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(30px) rotate(10deg);
+    }
+}
+
+/* Navbar */
+.navbar {
+    position: relative;
+    z-index: 10;
+    padding: 30px 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Main Section */
+.main-section {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    padding: 20px;
+}
+
+.content-wrapper {
+    text-align: center;
+    max-width: 900px;
+}
+
+.main-heading {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    color: white;
+    font-weight: 800;
+    margin-bottom: 60px;
+    line-height: 1.3;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.color-display {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+    margin-top: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.color-display:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Flip Button */
+.flip-btn {
+    background: white;
+    color: #1f2937;
+    border: none;
+    padding: 22px 60px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.flip-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.flip-btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.flip-btn:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.flip-btn:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 25px 30px;
+    }
+    
+    .nav-title {
+        font-size: 1.4rem;
+    }
+    
+    .main-heading {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+    
+    .color-display {
+        padding: 12px 25px;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        display: block;
+        margin-top: 20px;
+    }
+    
+    .flip-btn {
+        padding: 18px 45px;
+        font-size: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 20px 20px;
+    }
+    
+    .nav-title {
+        font-size: 1.2rem;
+    }
+    
+    .main-heading {
+        font-size: 1.5rem;
+    }
+    
+    .color-display {
+        font-size: 0.9rem;
+    }
+}

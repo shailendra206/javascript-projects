@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔖 Bookmark Manager</h1>
+        <p class="subtitle">Your bookmarks are saved locally</p>
+
+        <!-- Add Bookmark Form -->
+        <form class="bookmark-form" id="bookmarkForm">
+            <input 
+                type="text" 
+                id="siteName" 
+                placeholder="Site Name"
+                required
+            >
+            <input 
+                type="url" 
+                id="siteUrl" 
+                placeholder="https://example.com"
+                required
+            >            
+            <button type="submit" class="add-button">Add</button>
+        </form>
+
+        <!-- Bookmarks List -->
+        <div class="bookmarks-list" id="bookmarksList">
+            
+            <!-- Bookmark items will be added here -->
+        </div>
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <p>No bookmarks yet. Add one above!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

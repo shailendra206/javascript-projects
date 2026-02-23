@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Store - Quick View</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">🛍️ ShopHub</div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Cart (0)</a>
+        </nav>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <h1>Featured Products</h1>
+        <p class="section-subtitle">Click "Quick View" to see product details</p>
+
+        <div class="products-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Headphones">
+                    <span class="badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Premium Headphones</h3>
+                    <p class="price">$299.99</p>
+                    <div class="rating">⭐⭐⭐⭐⭐ (124)</div>
+                    <button class="quick-view-btn" data-product="1">
+                        👁️ Quick View
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Watch">
+                    <span class="badge sale">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3>Smart Watch Pro</h3>
+                    <p class="price">
+                        <span class="old-price">$399.99</span> $299.99
+                    </p>
+                    <div class="rating">⭐⭐⭐⭐☆ (89)</div>
+                    <button class="quick-view-btn" data-product="2">
+                        👁️ Quick View
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" alt="Sunglasses">
+                </div>
+                <div class="product-info">
+                    <h3>Designer Sunglasses</h3>
+                    <p class="price">$149.99</p>
+                    <div class="rating">⭐⭐⭐⭐⭐ (203)</div>
+                    <button class="quick-view-btn" data-product="3">
+                        👁️ Quick View
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=400&fit=crop" alt="Sneakers">
+                    <span class="badge">Hot</span>
+                </div>
+                <div class="product-info">
+                    <h3>Running Sneakers</h3>
+                    <p class="price">$129.99</p>
+                    <div class="rating">⭐⭐⭐⭐☆ (156)</div>
+                    <button class="quick-view-btn" data-product="4">
+                        👁️ Quick View
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-product" id="modal">
+            
+            <!-- Close Button -->
+            <button class="modal-close" id="closeBtn">✕</button>
+
+            <!-- Modal Content -->
+            <div class="modal-content">
+                
+                <!-- Left: Product Image -->
+                <div class="modal-image">
+                    <img id="modalImg" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop" alt="Product">
+                </div>
+
+                <!-- Right: Product Details -->
+                <div class="modal-details">
+                    <span class="modal-badge" id="modalBadge">New Arrival</span>
+                    <h2 id="modalTitle">Premium Headphones</h2>
+                    <div class="modal-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="reviews" id="modalReviews">(124 Reviews)</span>
+                    </div>
+                    <p class="modal-price" id="modalPrice">$299.99</p>
+                    
+                    <p class="modal-description" id="modalDescription">
+                        Experience premium sound quality with our flagship headphones. 
+                        Featuring noise cancellation, 30-hour battery life, and superior comfort.
+                    </p>
+
+                    <div class="modal-features">
+                        <h4>Key Features:</h4>
+                        <ul id="modalFeatures">
+                            <li>✓ Active Noise Cancellation</li>
+                            <li>✓ 30-hour Battery Life</li>
+                            <li>✓ Premium Comfort Padding</li>
+                            <li>✓ Bluetooth 5.0</li>
+                        </ul>
+                    </div>
+
+                    <div class="modal-options">
+                        <div class="option-group">
+                            <label>Color:</label>
+                            <div class="color-options">
+                                <span class="color-box" style="background: #000"></span>
+                                <span class="color-box" style="background: #fff; border: 1px solid #ddd"></span>
+                                <span class="color-box" style="background: #3b82f6"></span>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Quantity:</label>
+                            <div class="quantity-selector">
+                                <button class="qty-btn">-</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="btn-add-cart">🛒 Add to Cart</button>
+                        <button class="btn-buy-now">⚡ Buy Now</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for Themes */
+:root {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #6366f1;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme */
+body.dark {
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #1e1e32;
+    --text-primary: #ffffff;
+    --text-secondary: #aaa;
+    --accent: #818cf8;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Toggle Wrapper */
+.toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+/* Toggle Switch */
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 32px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.toggle input:checked + .slider {
+    background: var(--accent);
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(28px);
+}
+
+/* Content */
+.content {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* Cards */
+.card {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 5px 20px var(--shadow);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn.primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn.primary:hover {
+    box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 2px solid var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+}

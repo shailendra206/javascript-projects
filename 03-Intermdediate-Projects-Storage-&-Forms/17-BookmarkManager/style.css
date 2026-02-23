@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+/* Form */
+.bookmark-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.bookmark-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #2a2a4a;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.bookmark-form input::placeholder {
+    color: #666;
+}
+
+.bookmark-form input:focus {
+    outline: 2px solid #6366f1;
+}
+
+.bookmark-form button {
+    padding: 14px 25px;
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.bookmark-form button:hover {
+    background: #4f46e5;
+}
+
+/* Bookmarks List */
+.bookmarks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bookmark-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #2a2a4a;
+    padding: 15px 20px;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.bookmark-item:hover {
+    transform: translateX(5px);
+}
+
+.bookmark-icon {
+    width: 40px;
+    height: 40px;
+    background: #6366f1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.bookmark-info {
+    flex: 1;
+}
+
+.bookmark-info h3 {
+    font-size: 1rem;
+    margin-bottom: 3px;
+}
+
+.bookmark-info a {
+    color: #888;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.bookmark-info a:hover {
+    color: #6366f1;
+}
+
+.btn-delete {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.btn-delete:hover {
+    color: #ef4444;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .bookmark-form {
+        flex-direction: column;
+    }
+}

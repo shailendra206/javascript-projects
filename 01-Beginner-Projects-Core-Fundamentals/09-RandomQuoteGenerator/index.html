@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Cute Quote Generator 🌸</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Floating Decorations -->
+    <div class="floating-decorations">
+        <span class="float-item heart">💗</span>
+        <span class="float-item heart">💕</span>
+        <span class="float-item star">⭐</span>
+        <span class="float-item star">✨</span>
+        <span class="float-item cloud">☁️</span>
+        <span class="float-item flower">🌸</span>
+        <span class="float-item flower">🌷</span>
+        <span class="float-item sparkle">💫</span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Title -->
+        <h1 class="main-title">
+            <span>⭐</span> Daily Sparkle <span>⭐</span>
+        </h1>
+        
+        <!-- Quote Card -->
+        <div class="quote-card">
+            
+            <!-- Cute Corner Decorations -->
+            <div class="corner-decor top-left">🌸</div>
+            <div class="corner-decor top-right">🌸</div>
+            <div class="corner-decor bottom-left">🌸</div>
+            <div class="corner-decor bottom-right">🌸</div>
+            
+            <!-- Cute Mascot -->
+            <div class="mascot-container">
+                <div class="mascot" id="mascot">🐰</div>
+                <div class="mascot-shadow"></div>
+            </div>
+
+            <!-- Quote Content -->
+            <div class="quote-content">
+                <div class="quote-marks open">❝</div>
+                <p class="quote-text" id="quoteText">
+                    Click the button to receive your daily dose of inspiration!
+                </p>
+                <div class="quote-marks close">❞</div>
+            </div>
+
+            <!-- Author Section -->
+            <div class="author-section">
+                <div class="author-line"></div>
+                <span class="author-name" id="authorName">Your Bunny Friend</span>
+                <div class="author-line"></div>
+            </div>
+
+            <!-- Cute Divider -->
+            <div class="cute-divider">
+                <span>♡</span>
+                <span>✿</span>
+                <span>♡</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="newQuoteBtn">
+                    <span class="btn-icon">💖</span>
+                    <span class="btn-text">New Quote</span>
+                    <span class="btn-sparkle">✨</span>
+                </button>
+                
+                <button class="btn btn-secondary">
+                    <span class="btn-icon">💗</span>
+                    <span class="btn-text" id="copyText">Copy</span>
+                </button>
+                
+                <!-- <button class="btn btn-heart" id="favBtn" onclick="toggleFavorite()">
+                    <span id="favIcon">🤍</span>
+                </button> -->
+            </div>
+
+        </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">💕</span>
+        <span class="toast-text" id="toastText">Copied!</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <span>🌸</span>
+        </div>
+        <p>Getting your quote...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active" data-step="1">1</div>
+            <div class="line"></div>
+            <div class="step" data-step="2">2</div>
+            <div class="line"></div>
+            <div class="step" data-step="3">3</div>
+        </div>
+
+        <form id="multiForm">
+            <!-- Step 1: Personal Info -->
+            <div class="form-step active" id="step1">
+                <h2>Personal Info</h2>
+                <p class="step-desc">Tell us about yourself</p>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="john@example.com">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn next-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Account Details -->
+            <div class="form-step " id="step2">
+                <h2>Account Details</h2>
+                <p class="step-desc">Create your login credentials</p>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="johndoe123">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Min 6 characters">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn prev-btn">← Back</button>
+                    <button type="button" class="btn next-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div class="form-step" id="step3">
+                <h2>Confirm Details</h2>
+                <p class="step-desc">Review your information</p>
+
+                <div class="review-box">
+                    <div class="review-item">
+                        <span class="label">Name:</span>
+                        <span class="value" id="reviewName">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="label">Email:</span>
+                        <span class="value" id="reviewEmail">-</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="label">Username:</span>
+                        <span class="value" id="reviewUsername">-</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn prev-btn">← Back</button>
+                    <button type="submit" class="btn submit-btn">Submit ✓</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
