@@ -1,10 +1,10 @@
 # 🚀 JavaScript Projects
 
-A collection of **22+ JavaScript projects** built to master core concepts — from DOM manipulation to form validation.
+A collection of **25 JavaScript projects** built to master core concepts — from DOM manipulation to API integration.
 
 ---
 
-## 📊 Progress: 22/30 Completed
+## 📊 Progress: 25/25 Completed ✅
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -57,18 +57,13 @@ A collection of **22+ JavaScript projects** built to master core concepts — fr
 
 ---
 
-### 🔴 Coming Soon
+### 🟡 Intermediate Part 3 — APIs & Async (3 Projects)
 
-| # | Project | Status |
-|---|---------|--------|
-| 23 | Weather App | 🔜 |
-| 24 | GitHub User Finder | 🔜 |
-| 25 | Dictionary App | 🔜 |
-| 26 | Image Slider | 🔜 |
-| 27 | Filterable Gallery | 🔜 |
-| 28 | Expense Tracker | 🔜 |
-| 29 | Shopping Cart | 🔜 |
-| 30 | Kanban Board | 🔜 |
+| # | Project | Concepts | Source Code |
+|---|---------|----------|-------------|
+| 23 | Weather App | Fetch API & Async/Await | [View Code](https://github.com/kousei-Git/javascript-projects/tree/master/04-Intermediate-Projects-APIs-%26-Async/23-WeatherApp) |
+| 24 | GitHub User Finder | Fetch API & Async/Await | [View Code](https://github.com/kousei-Git/javascript-projects/tree/master/04-Intermediate-Projects-APIs-%26-Async/24-GitHubUserFinder) |
+| 25 | Dictionary App | Fetch API & Async/Await | [View Code](https://github.com/kousei-Git/javascript-projects/tree/master/04-Intermediate-Projects-APIs-%26-Async/25-DictionaryApp) |
 
 ---
 

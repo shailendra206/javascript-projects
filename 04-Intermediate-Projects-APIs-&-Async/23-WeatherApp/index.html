@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Pro - Advanced Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="weather-clear">
+    <!-- ═══════════════════════════════════════════
+         ANIMATED BACKGROUND EFFECTS
+         ═══════════════════════════════════════════ -->
+    <div class="background-effects">
+        <!-- Gradient Background -->
+        <div class="gradient-bg"></div>
+
+        <!-- Floating Clouds -->
+        <div class="clouds-bg">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+        </div>
+
+        <!-- Sun Rays (for sunny weather) -->
+        <!-- <div class="sun-rays"></div> -->
+
+        <!-- Particles (Rain/Snow) -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Lightning Flash (for storms) -->
+        <div class="lightning-flash"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN APP CONTAINER
+         ═══════════════════════════════════════════ -->
+    <div class="app-container">
+        <!-- HEADER & SEARCH -->
+        <header class="app-header">
+            <div class="search-container">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="cityInput"
+                        placeholder="Search for a city..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- Search Button -->
+                <button class="search-btn" id="searchBtn" aria-label="Search">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+
+                <!-- Location Button -->
+                <button class="location-btn" id="locationBtn" aria-label="Use my location">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Recent Searches Dropdown -->
+            <div class="recent-searches " id="recentSearches">
+                <div class="recent-header">
+                    <span>Recent Searches</span>
+                    <button class="clear-recent" id="clearRecent">Clear All</button>
+                </div>
+                <ul class="recent-list" id="recentList">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+        </header>
+
+        <!-- ═══════════════════════════════════════════
+             MAIN WEATHER SECTION
+             ═══════════════════════════════════════════ -->
+        <main class="weather-main">
+            <!-- LOADING STATE -->
+            <div class="loading-state " id="loadingState">
+                <div class="skeleton-container">
+                    <div class="skeleton skeleton-location"></div>
+                    <div class="skeleton skeleton-temp"></div>
+                    <div class="skeleton skeleton-desc"></div>
+                    <div class="skeleton-grid">
+                        <div class="skeleton skeleton-detail"></div>
+                        <div class="skeleton skeleton-detail"></div>
+                        <div class="skeleton skeleton-detail"></div>
+                        <div class="skeleton skeleton-detail"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERROR STATE -->
+            <div class="error-state " id="errorState">
+                <div class="error-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h2 class="error-title">Oops! Something went wrong</h2>
+                <p class="error-message" id="errorMessage">City not found. Please try another location.</p>
+                <button class="retry-btn" id="retryBtn">Try Again</button>
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div class="empty-state " id="emptyState">
+                <div class="empty-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                    </svg>
+                </div>
+                <h2 class="empty-title">Welcome to Weather Pro</h2>
+                <p class="empty-message">Search for a city or use your current location to get started</p>
+            </div>
+
+            <!-- WEATHER CONTENT -->
+            <div class="weather-content" id="weatherContent">
+                <!-- Current Weather -->
+                <section class="current-weather">
+                    <!-- Location Info -->
+                    <div class="location-info">
+                        <h2 class="city-name" id="cityName">Mumbai</h2>
+                        <p class="country-name" id="countryName">India</p>
+                        <p class="current-date" id="currentDate">Monday, January 15 • 5:30 PM</p>
+                    </div>
+
+                    <!-- Weather Hero -->
+                    <div class="weather-hero">
+                        <div class="weather-icon-container">
+                            <img 
+                                src="https://openweathermap.org/img/wn/01d@4x.png" 
+                                alt="Weather icon" 
+                                class="weather-icon"
+                                id="weatherIcon"
+                            >
+                        </div>
+
+                        <div class="temperature-container">
+                            <div class="temperature" id="temperature" data-temp="28">28°</div>
+                            <div class="temp-unit-toggle">
+                                <button class="unit-btn active" id="unitC">
+                                    <span>°C</span>
+                                </button>
+                                <span class="unit-divider">|</span>
+                                <button class="unit-btn" id="unitF">
+                                    <span>°F</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Description -->
+                    <div class="weather-description">
+                        <p class="description-text" id="description">Clear Sky</p>
+                        <p class="feels-like">
+                            <span>Feels like</span>
+                            <strong id="feelsLike">30°C</strong>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Weather Details Grid -->
+                <section class="weather-details">
+                    <!-- Humidity -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Humidity</span>
+                            <span class="detail-value" id="humidity">65%</span>
+                        </div>
+                    </div>
+
+                    <!-- Wind Speed -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Wind Speed</span>
+                            <span class="detail-value" id="windSpeed">12 km/h</span>
+                        </div>
+                    </div>
+
+                    <!-- Pressure -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Pressure</span>
+                            <span class="detail-value" id="pressure">1013 mb</span>
+                        </div>
+                    </div>
+
+                    <!-- Visibility -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Visibility</span>
+                            <span class="detail-value" id="visibility">10 km</span>
+                        </div>
+                    </div>
+
+                    <!-- UV Index -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">UV Index</span>
+                            <span class="detail-value" id="uvIndex">7</span>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Cover -->
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                            </svg>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Cloud Cover</span>
+                            <span class="detail-value" id="cloudCover">20%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sun Times -->
+                <section class="sun-times">
+                    <!-- Sunrise -->
+                    <div class="sun-card">
+                        <div class="sun-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <div class="sun-info">
+                            <span class="sun-label">Sunrise</span>
+                            <span class="sun-time" id="sunrise">6:30 AM</span>
+                        </div>
+                    </div>
+
+                    <!-- Sun Arc Progress -->
+                    <div class="sun-progress">
+                        <div class="sun-arc">
+                            <svg class="arc-svg" viewBox="0 0 100 50">
+                                <defs>
+                                    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path class="arc-bg" d="M 10 45 Q 50 5, 90 45" fill="none"/>
+                                <path class="arc-fill" id="arcFill" d="M 10 45 Q 50 5, 90 45" fill="none"/>
+                            </svg>
+                            <div class="sun-dot" id="sunDot"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sunset -->
+                    <div class="sun-card">
+                        <div class="sun-icon sunset-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                            </svg>
+                        </div>
+                        <div class="sun-info">
+                            <span class="sun-label">Sunset</span>
+                            <span class="sun-time" id="sunset">6:45 PM</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5-Day Forecast -->
+                <section class="forecast-section">
+                    <h3 class="section-title">5-Day Forecast</h3>
+                    <div class="forecast-container" id="forecastContainer">
+                        <!-- Dynamically populated -->  
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="app-footer">
+            <p>Weather data provided by OpenWeatherMap</p>
+            <p class="last-updated">Last updated: <span id="lastUpdated">Never</span></p>
+        </footer>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

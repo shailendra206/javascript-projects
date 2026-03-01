@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            
+            <!-- Header -->
+            <header class="header">
+                <div class="logo">
+                    <span class="logo-icon">📖</span>
+                    <span class="logo-text">Dictionary</span>
+                </div>
+                
+                <!-- Theme Toggle Slider -->
+                <div class="theme-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider-track">
+                            <span class="slider-thumb"></span>
+                        </span>
+                    </label>
+                </div>
+            </header>
+
+            <!-- Search Box -->
+            <div class="search-section">
+                <div class="search-box" id="searchBox">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search a word..."
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn" class="search-btn">Search</button>
+                </div>
+            </div>
+
+            <!-- Recent Searches -->
+            <div id="recentSection" class="recent-section hidden">
+                <div class="section-header">
+                    <span>🕐 Recent</span>
+                    <button id="clearBtn" class="clear-btn">Clear</button>
+                </div>
+                <div id="recentList" class="recent-list">
+                    <!-- ||item -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+
+                <!-- Hero Illustration -->
+                <div class="empty-hero">
+                    <div class="book-icon">
+                        <span class="book-emoji">📖</span>
+                        <div class="sparkles">
+                            <span>✨</span>
+                            <span>✨</span>
+                            <span>✨</span>
+                        </div>
+                    </div>
+                    <h2>Discover New Words</h2>
+                    <p>Type any word to explore its meaning, pronunciation & more</p>
+                </div>
+            
+                <!-- Word of the Day -->
+                <div class="wod-card">
+                    <div class="wod-header">
+                        <span class="wod-badge">🌟 Word of the Day</span>
+                    </div>
+                    <h3 id="wodWord" class="wod-word">Serendipity</h3>
+                    <p id="wodPhonetic" class="wod-phonetic">/ˌserənˈdɪpɪti/</p>
+                    <p id="wodMeaning" class="wod-meaning">The occurrence of events by chance in a happy way.</p>
+                    <button id="wodBtn" class="wod-btn">
+                        <span>Learn this word</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            
+                <!-- Quick Try Section -->
+                <div class="quick-try">
+                    <p class="try-label">Or try these:</p>
+                    <div class="try-pills">
+                        <button class="try-pill" data-word="eloquent">eloquent</button>
+                        <button class="try-pill" data-word="ephemeral">ephemeral</button>
+                        <button class="try-pill" data-word="resilience">resilience</button>
+                        <button class="try-pill" data-word="wanderlust">wanderlust</button>
+                    </div>
+                </div>
+            
+                <!-- Fun Facts -->
+                <div class="fun-facts">
+                    <div class="fact-card">
+                        <span class="fact-icon">📚</span>
+                        <div class="fact-text">
+                            <strong>170,000+</strong>
+                            <span>words in English</span>
+                        </div>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">🎯</span>
+                        <div class="fact-text">
+                            <strong>3,000</strong>
+                            <span>commonly used</span>
+                        </div>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-icon">🚀</span>
+                        <div class="fact-text">
+                            <strong>1,000+</strong>
+                            <span>new words/year</span>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+            <!-- Favorites -->
+            <div id="favsSection" class="favs-section hidden">
+                <div class="section-header">
+                    <span>⭐ Favorites</span>
+                </div>
+                <div id="favsList" class="favs-list"></div>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <p>Searching...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state hidden">
+                <span class="error-icon">😕</span>
+                <h3>Word not found</h3>
+                <p>Check spelling and try again</p>
+            </div>
+
+            <!-- Word Card (Dynamic) -->
+
+            <!-- Dummy Card (Static Preview) -->
+            <div class="word-card dummy-card hidden">
+                <span class="dummy-label">Preview Card</span>
+                <div class="card-header">
+                    <div class="word-info">
+                        <h1 class="word-title"></h1>
+                        <span class="phonetic"></span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn">📋</button>
+                        <button class="action-btn">🤍</button>
+                        <button class="audio-btn">🔊</button>
+                    </div>
+                </div>
+            
+                <div class="meanings-container">
+                </div>
+            
+                <div class="source-box">
+                    <span>Source:</span>
+                    <a href="#" target="_blank">https://api.dictionaryapi.dev/api/v2/entries/en/Serendipity</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
