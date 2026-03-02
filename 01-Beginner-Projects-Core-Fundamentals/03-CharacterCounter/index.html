@@ -1,68 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Counter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Surreal Digital Character Counter</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-    <!-- Animated Background -->
-    <div class="bg-gradient"></div>
-    <div class="bg-blob blob-1"></div>
-    <div class="bg-blob blob-2"></div>
-    <div class="bg-blob blob-3"></div>
+    <!-- Floating Eyeballs -->
+    <div class="eyeball eyeball-1">
+        <div class="pupil"></div>
+    </div>
+    <div class="eyeball eyeball-2">
+        <div class="pupil"></div>
+    </div>
+    <div class="eyeball eyeball-3">
+        <div class="pupil"></div>
+    </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        
-        <!-- Glass Card -->
-        <div class="glass-card">
-            
-            <!-- Header -->
-            <div class="header">
-                <span class="badge">Pro Tool</span>
-                <h1>Character Counter</h1>
-                <p>Beautiful way to count your text</p>
+    <!-- Background Blurs -->
+    <div class="blur-circle blur-blue"></div>
+    <div class="blur-circle blur-pink"></div>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">
+                Character <span class="title-highlight">Counter</span>
+            </h1>
+            <p class="subtitle">OWN YOUR WORDS. TRACK YOUR LIMITS. TRANSCEND THE TEXT.</p>
+        </div>
+
+        <!-- Counter Container -->
+        <div class="counter-wrapper">
+
+            <!-- Pink Outer Box -->
+            <div class="counter-box">
+
+                <!-- Side Buttons -->
+                <div class="side-buttons">
+                    <button class="side-btn btn-orange" id="clear-btn">
+                        <span class="material-icons">delete</span>
+                    </button>
+                    <button class="side-btn btn-blue" id="copy-btn">
+                        <span class="material-icons">content_copy</span>
+                    </button>
+                </div>
+
+                <!-- Black Screen -->
+                <div class="screen">
+                    <textarea
+                        class="text-input"
+                        id="text-input"
+                        placeholder="TYPE YOUR TRUTH HERE..."
+                    ></textarea>
+
+                    <!-- Stats Bar -->
+                    <div class="stats-bar">
+                        <div class="stat-box">
+                            CHAR: <span id="char-count">0000</span>
+                        </div>
+                        <div class="stat-box">
+                            WORDS: <span id="word-count">0000</span>
+                        </div>
+                        <div class="stat-box">
+                            SENT: <span id="sentence-count">0000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corner Dots -->
+                <div class="corner-dot dot-tl"></div>
+                <div class="corner-dot dot-tr"></div>
+                <div class="corner-dot dot-bl"></div>
+                <div class="corner-dot dot-br"></div>
+
             </div>
 
-            <!-- Textarea -->
-            <div class="textarea-container">
-                <textarea 
-                    id="textArea" 
-                    placeholder="Start typing something amazing..."
-                    spellcheck="false"
-                ></textarea>
-                <div class="textarea-glow"></div>
+            <!-- Decorative Fingers -->
+            <div class="finger finger-right">
+                <div class="finger-nail finger-nail-right"></div>
             </div>
-
-            <!-- Stats -->
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-value" id="characters">0</span>
-                    <span class="stat-label">Characters</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-value" id="words">0</span>
-                    <span class="stat-label">Words</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-value" id="sentences">0</span>
-                    <span class="stat-label">Sentences</span>
-                </div>
+            <div class="finger finger-left">
+                <div class="finger-nail finger-nail-left"></div>
             </div>
 
         </div>
 
         <!-- Footer -->
-        <p class="footer-text">Crafted with 💜 for writers</p>
+        <div class="footer">
+            <p>© 199X SURREAL TECH INDUSTRIES</p>
+            <button class="toggle-btn" id="toggle-dark">Just existing bruh.</button>
+        </div>
 
-    </div>
-
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
