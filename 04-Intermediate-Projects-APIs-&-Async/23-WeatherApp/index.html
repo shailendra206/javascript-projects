@@ -1,318 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Pro - Advanced Weather Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Aetheria Weather Dashboard</title>
+    <script>
+        if(localStorage.getItem('theme') === 'dark'){
+            document.documentElement.classList.add('dark')
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.nav-search-bar').classList.add('hidden')
+        })
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body class="weather-clear">
-    <!-- ═══════════════════════════════════════════
-         ANIMATED BACKGROUND EFFECTS
-         ═══════════════════════════════════════════ -->
-    <div class="background-effects">
-        <!-- Gradient Background -->
-        <div class="gradient-bg"></div>
+<body>
 
-        <!-- Floating Clouds -->
-        <div class="clouds-bg">
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-            <div class="cloud cloud-3"></div>
-            <div class="cloud cloud-4"></div>
+    <!-- ========== MAIN/ERROR PAGE NAVBAR ========== -->
+    <nav id="navbar-main" class="navbar navbar-main">
+        <div class="nav-brand">
+            <span class="material-symbols-outlined nav-icon">storm</span>
+            <span class="nav-title">Aetheria</span>
         </div>
+        <div class="nav-search-bar">
+            <span class="material-symbols-outlined search-icon-nav">search</span>
+            <input type="text" id="nav-search-input" autocomplete="off" placeholder="Search city..." class="nav-search-input" aria-label="Search city" />
+            <button id="nav-location-btn" class="icon-btn nav-loc-btn" aria-label="Detect Location">
+                <span class="material-symbols-outlined">my_location</span>
+            </button>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn" id="theme-toggle-main" aria-label="Toggle Theme">
+                <span class="material-symbols-outlined theme-icon-dark">dark_mode</span>
+                <span class="material-symbols-outlined theme-icon-light">light_mode</span>
+            </button>
+        </div>
+    </nav>
 
-        <!-- Sun Rays (for sunny weather) -->
-        <!-- <div class="sun-rays"></div> -->
-
-        <!-- Particles (Rain/Snow) -->
-        <div class="particles" id="particles"></div>
-
-        <!-- Lightning Flash (for storms) -->
-        <div class="lightning-flash"></div>
+    <!-- ========== LANDING PAGE ========== -->
+    <div id="page-landing" class="page page-landing">
+        <div class="landing-bg">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY6Cl-ik1-EHJ-Dc0S21TGDZna81BncR1-cJs3-2MZWmxfLjoNo56HZCSWmfe6eTNxvOV8Tk6AAhB_Ka5rArG5BOuo0760FleATznmE4StfmVROnGE8qjgvwhoAcMjB6ebFsIEfSNjA6vbYT1RxP5Uzm1qEa0j0PHISGU4xFnsWkDe5OyX3RPiqpG1VtdH08Vt_5WNijH0F3A7FOyEISVg2tcAoW4mrHHGR6YF_BXUDF47tqS-5eUpOcv-WHdl-ZjhN1DsQ2YDNw" alt="Ethereal cloudscapes" class="landing-bg-img" />
+            <div class="landing-bg-overlay"></div>
+        </div>
+        <main class="landing-main">
+            <div class="landing-content">
+                <h1 class="landing-title">
+                    AETHERIA<br /><span class="landing-title-sub">Weather</span>
+                </h1>
+                <p class="landing-subtitle">Atmospheric Forecasts &amp; Meteorological Analyses</p>
+                <div class="landing-search-wrapper">
+                    <div class="landing-input-group">
+                        <div class="landing-search-icon">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                        <input type="text" id="landing-search-input" autocomplete="off" class="landing-search-input" placeholder="Enter city, region, or coordinates..." aria-label="Search location" />
+                    </div>
+                    <button id="landing-explore-btn" class="landing-explore-btn">Explore</button>
+                </div>
+                <button id="landing-location-btn" class="landing-location-btn">
+                    <span class="material-symbols-outlined">my_location</span>
+                    <span class="landing-location-text">Detect My Location</span>
+                </button>
+            </div>
+        </main>
     </div>
 
-    <!-- ═══════════════════════════════════════════
-         MAIN APP CONTAINER
-         ═══════════════════════════════════════════ -->
-    <div class="app-container">
-        <!-- HEADER & SEARCH -->
-        <header class="app-header">
-            <div class="search-container">
-                <!-- Search Box -->
-                <div class="search-box">
-                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                    <input 
-                        type="text" 
-                        class="search-input" 
-                        id="cityInput"
-                        placeholder="Search for a city..."
-                        autocomplete="off"
-                    >
-                </div>
+    <!-- ========== MAIN PAGE ========== -->
+    <div id="page-main" class="page page-main hidden">
+        <main class="main-layout">
+            <section class="main-content">
+                <header class="main-header">
+                    <h1 class="main-title">Atmospheric<br />Conditions</h1>
+                    <p class="main-description">
+                        A detailed analysis of current meteorological phenomena, measuring the subtle invisible forces that shape our immediate environment and influence the day ahead.
+                    </p>
+                </header>
 
-                <!-- Search Button -->
-                <button class="search-btn" id="searchBtn" aria-label="Search">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </button>
-
-                <!-- Location Button -->
-                <button class="location-btn" id="locationBtn" aria-label="Use my location">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Recent Searches Dropdown -->
-            <div class="recent-searches " id="recentSearches">
-                <div class="recent-header">
-                    <span>Recent Searches</span>
-                    <button class="clear-recent" id="clearRecent">Clear All</button>
-                </div>
-                <ul class="recent-list" id="recentList">
-                    <!-- Dynamically populated -->
-                </ul>
-            </div>
-        </header>
-
-        <!-- ═══════════════════════════════════════════
-             MAIN WEATHER SECTION
-             ═══════════════════════════════════════════ -->
-        <main class="weather-main">
-            <!-- LOADING STATE -->
-            <div class="loading-state " id="loadingState">
-                <div class="skeleton-container">
-                    <div class="skeleton skeleton-location"></div>
-                    <div class="skeleton skeleton-temp"></div>
-                    <div class="skeleton skeleton-desc"></div>
-                    <div class="skeleton-grid">
-                        <div class="skeleton skeleton-detail"></div>
-                        <div class="skeleton skeleton-detail"></div>
-                        <div class="skeleton skeleton-detail"></div>
-                        <div class="skeleton skeleton-detail"></div>
+                <div class="current-weather-bar">
+                    <div class="current-location">
+                        <h2 class="current-label">Current Focus</h2>
+                        <div id="city-name" class="current-city">—</div>
+                    </div>
+                    <div class="current-temp-wrapper">
+                        <div id="current-temp" class="current-temp">—</div>
+                        <div id="current-desc" class="current-desc">—</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- ERROR STATE -->
-            <div class="error-state " id="errorState">
-                <div class="error-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
-                </div>
-                <h2 class="error-title">Oops! Something went wrong</h2>
-                <p class="error-message" id="errorMessage">City not found. Please try another location.</p>
-                <button class="retry-btn" id="retryBtn">Try Again</button>
-            </div>
-
-            <!-- EMPTY STATE -->
-            <div class="empty-state " id="emptyState">
-                <div class="empty-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                    </svg>
-                </div>
-                <h2 class="empty-title">Welcome to Weather Pro</h2>
-                <p class="empty-message">Search for a city or use your current location to get started</p>
-            </div>
-
-            <!-- WEATHER CONTENT -->
-            <div class="weather-content" id="weatherContent">
-                <!-- Current Weather -->
-                <section class="current-weather">
-                    <!-- Location Info -->
-                    <div class="location-info">
-                        <h2 class="city-name" id="cityName">Mumbai</h2>
-                        <p class="country-name" id="countryName">India</p>
-                        <p class="current-date" id="currentDate">Monday, January 15 • 5:30 PM</p>
-                    </div>
-
-                    <!-- Weather Hero -->
-                    <div class="weather-hero">
-                        <div class="weather-icon-container">
-                            <img 
-                                src="https://openweathermap.org/img/wn/01d@4x.png" 
-                                alt="Weather icon" 
-                                class="weather-icon"
-                                id="weatherIcon"
-                            >
+                <!-- Weather Cards Grid -->
+                <div class="cards-grid" id="cards-grid">
+                    <div class="weather-card card-animate" style="--delay:0">
+                        <div class="card-header">
+                            <span class="card-label">Humidity</span>
+                            <span class="material-symbols-outlined card-icon">water_drop</span>
                         </div>
+                        <div class="card-value" id="card-humidity">—</div>
+                        <div class="card-extra" id="card-humidity-extra">—</div>
+                    </div>
+                    <div class="weather-card card-animate" style="--delay:1">
+                        <div class="card-header">
+                            <span class="card-label">Wind</span>
+                            <span class="material-symbols-outlined card-icon">air</span>
+                        </div>
+                        <div class="card-value" id="card-wind">—</div>
+                        <div class="card-extra" id="card-wind-extra">—</div>
+                    </div>
+                    <div class="weather-card card-animate" style="--delay:2">
+                        <div class="card-header">
+                            <span class="card-label">Clouds</span>
+                            <span class="material-symbols-outlined card-icon">cloud</span>
+                        </div>
+                        <div class="card-value" id="card-uv">—</div>
+                        <div class="card-extra" id="card-uv-extra">—</div>
+                    </div>
+                    <div class="weather-card card-animate" style="--delay:3">
+                        <div class="card-header">
+                            <span class="card-label">Visibility</span>
+                            <span class="material-symbols-outlined card-icon">visibility</span>
+                        </div>
+                        <div class="card-value" id="card-visibility">—</div>
+                        <div class="card-extra" id="card-visibility-extra">—</div>
+                    </div>
+                    <div class="weather-card card-animate" style="--delay:4">
+                        <div class="card-header">
+                            <span class="card-label">Pressure</span>
+                            <span class="material-symbols-outlined card-icon">compress</span>
+                        </div>
+                        <div class="card-value" id="card-pressure">—</div>
+                        <div class="card-extra" id="card-pressure-extra">—</div>
+                    </div>
+                    <div class="weather-card card-animate" style="--delay:5">
+                        <div class="card-header">
+                            <span class="card-label">Feels Like</span>
+                            <span class="material-symbols-outlined card-icon">thermostat</span>
+                        </div>
+                        <div class="card-value" id="card-feelslike">—</div>
+                        <div class="card-extra" id="card-feelslike-extra">—</div>
+                    </div>
+                </div>
 
-                        <div class="temperature-container">
-                            <div class="temperature" id="temperature" data-temp="28">28°</div>
-                            <div class="temp-unit-toggle">
-                                <button class="unit-btn active" id="unitC">
-                                    <span>°C</span>
-                                </button>
-                                <span class="unit-divider">|</span>
-                                <button class="unit-btn" id="unitF">
-                                    <span>°F</span>
-                                </button>
+                <!-- Forecast + Solar -->
+                <div class="forecast-solar-grid">
+                    <div class="forecast-section">
+                        <h3 class="section-title">5-Day Outlook</h3>
+                        <div class="forecast-scroll-wrapper">
+                            <div class="forecast-scroll" id="forecast-container"></div>
+                        </div>
+                    </div>
+                    <div class="solar-section">
+                        <h3 class="section-title">Solar Cycle</h3>
+                        <div class="solar-card">
+                            <div class="solar-arc">
+                                <div class="solar-arc-line"></div>
+                                <div class="solar-sun-icon" id="solar-sun-position">
+                                    <span class="material-symbols-outlined sun-icon">light_mode</span>
+                                </div>
+                            </div>
+                            <div class="solar-times">
+                                <div class="solar-time">
+                                    <span class="material-symbols-outlined solar-time-icon">wb_twilight</span>
+                                    <div class="solar-time-value" id="sunrise-time">—</div>
+                                </div>
+                                <div class="solar-time">
+                                    <span class="material-symbols-outlined solar-time-icon">clear_night</span>
+                                    <div class="solar-time-value" id="sunset-time">—</div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    <!-- Weather Description -->
-                    <div class="weather-description">
-                        <p class="description-text" id="description">Clear Sky</p>
-                        <p class="feels-like">
-                            <span>Feels like</span>
-                            <strong id="feelsLike">30°C</strong>
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Weather Details Grid -->
-                <section class="weather-details">
-                    <!-- Humidity -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Humidity</span>
-                            <span class="detail-value" id="humidity">65%</span>
-                        </div>
-                    </div>
-
-                    <!-- Wind Speed -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Wind Speed</span>
-                            <span class="detail-value" id="windSpeed">12 km/h</span>
-                        </div>
-                    </div>
-
-                    <!-- Pressure -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Pressure</span>
-                            <span class="detail-value" id="pressure">1013 mb</span>
-                        </div>
-                    </div>
-
-                    <!-- Visibility -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Visibility</span>
-                            <span class="detail-value" id="visibility">10 km</span>
-                        </div>
-                    </div>
-
-                    <!-- UV Index -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">UV Index</span>
-                            <span class="detail-value" id="uvIndex">7</span>
-                        </div>
-                    </div>
-
-                    <!-- Cloud Cover -->
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Cloud Cover</span>
-                            <span class="detail-value" id="cloudCover">20%</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Sun Times -->
-                <section class="sun-times">
-                    <!-- Sunrise -->
-                    <div class="sun-card">
-                        <div class="sun-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                            </svg>
-                        </div>
-                        <div class="sun-info">
-                            <span class="sun-label">Sunrise</span>
-                            <span class="sun-time" id="sunrise">6:30 AM</span>
-                        </div>
-                    </div>
-
-                    <!-- Sun Arc Progress -->
-                    <div class="sun-progress">
-                        <div class="sun-arc">
-                            <svg class="arc-svg" viewBox="0 0 100 50">
-                                <defs>
-                                    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <path class="arc-bg" d="M 10 45 Q 50 5, 90 45" fill="none"/>
-                                <path class="arc-fill" id="arcFill" d="M 10 45 Q 50 5, 90 45" fill="none"/>
-                            </svg>
-                            <div class="sun-dot" id="sunDot"></div>
-                        </div>
-                    </div>
-
-                    <!-- Sunset -->
-                    <div class="sun-card">
-                        <div class="sun-icon sunset-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                            </svg>
-                        </div>
-                        <div class="sun-info">
-                            <span class="sun-label">Sunset</span>
-                            <span class="sun-time" id="sunset">6:45 PM</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 5-Day Forecast -->
-                <section class="forecast-section">
-                    <h3 class="section-title">5-Day Forecast</h3>
-                    <div class="forecast-container" id="forecastContainer">
-                        <!-- Dynamically populated -->  
-                    </div>
-                </section>
-            </div>
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">Chronicle</h3>
+                    <p class="sidebar-subtitle">Recent meteorological inquiries</p>
+                </div>
+                <div class="sidebar-list-wrapper">
+                    <ul class="sidebar-list" id="history-list"></ul>
+                </div>
+                <div class="sidebar-footer">
+                    <button id="clear-history-btn" class="clear-history-btn">Clear History</button>
+                </div>
+            </aside>
         </main>
-
-        <!-- FOOTER -->
-        <footer class="app-footer">
-            <p>Weather data provided by OpenWeatherMap</p>
-            <p class="last-updated">Last updated: <span id="lastUpdated">Never</span></p>
-        </footer>
     </div>
+
+    <!-- ========== ERROR PAGE ========== -->
+    <div id="page-error" class="page page-error hidden">
+        <main class="error-layout">
+            <section class="error-content-wrapper">
+                <div class="error-bg-icon">
+                    <span class="material-symbols-outlined">bolt</span>
+                </div>
+                <div class="error-content">
+                    <h1 class="error-title">Connection<br />Interrupted</h1>
+                    <p class="error-description">
+                        The atmospheric signals have been lost to the void. Please try to reconnect with the observatory.
+                    </p>
+                    <p class="error-detail" id="error-message"></p>
+                    <button id="retry-btn" class="retry-btn">Retry</button>
+                </div>
+            </section>
+            <aside class="sidebar sidebar-disabled">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">Chronicle</h3>
+                    <p class="sidebar-subtitle">Recent meteorological inquiries</p>
+                </div>
+                <div class="sidebar-list-wrapper">
+                    <ul class="sidebar-list" id="error-history-list"></ul>
+                </div>
+                <div class="sidebar-footer">
+                    <button class="clear-history-btn" disabled>Clear History</button>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- ========== LOADING OVERLAY ========== -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <span class="material-symbols-outlined loading-icon">storm</span>
+            <p class="loading-text">Reading the atmosphere...</p>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="app-footer">
+        <div class="footer-left">© 2026 Aetheria Weather</div>
+        <div class="footer-links">
+            <a href="https://openweathermap.org/current?collection=current_forecast" target="_blank">Data Sources</a>
+        </div>
+    </footer>
 
     <script type="module" src="script.js"></script>
 </body>
