@@ -1,257 +1,246 @@
 const API_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
 
+//navbar
+let navSearchBar = document.getElementById('navSearch')
+let logo = document.getElementById('logoBtn')
+let toggleTheme = document.getElementById('themeBtn')
+let navBtn = document.getElementById('navBtn')
+let navInput = document.getElementById('navInput')
 
-let searchInput = document.getElementById('searchInput')
-let word = document.querySelector('.word-title')
-let phonetic = document.querySelector('.phonetic')
-let loader = document.querySelector('.loader')
-let meaningsContainer = document.querySelector('.meanings-container')
-let wordCard = document.querySelector('.word-card')
-let errorState = document.getElementById('errorState')
-let pos = document.querySelector('.pos-row')
-let antonymList = document.getElementById('antList')
-let emptyState = document.getElementById('emptyState')
-let themeToggle = document.getElementById('themeToggle')
-let wodBtn = document.getElementById('wodBtn')
-let tryPills = document.querySelector('.try-pills')
-let recentSection = document.getElementById('recentSection')
-let recentList = document.querySelector('.recent-list')
-let clearBtn = document.getElementById('clearBtn')
-let sourceBox = document.querySelector('.source-box')
-let link = sourceBox.querySelector("a")
+//Landing page
+let searchBtn = document.querySelector('.search-box__btn')
+let landingPage = document.getElementById('pageLanding')
+let landingPageInput = document.getElementById('landingInput')
 
-let recentItemArr = []
+//Main-page
+let mainPage = document.getElementById('pageResults')
+let word = document.getElementById('resWord')
+let phonetic = document.getElementById('resPhonetic')
+let mainPageContainer = document.querySelector('.results__main')
 
-let searchInputStr = null
-searchInput.addEventListener('input',() => {
-    if(searchInput.value !== ''){
-        searchInputStr = searchInput.value.trim()
-    }
-})
+//Error page
+let errorPage = document.getElementById('pageError')
+let retryBtn = document.getElementById('retryBtn')
 
-document.addEventListener('keydown',(e) => {
-    if(e.key === 'Enter'){
-        searchInput.value = ''
-        fetchData(searchInputStr)
-    }
-})
+//loading overlay
+let loadingOverlay = document.getElementById('loader')
 
+//Navigation between pages
 
-
-themeToggle.addEventListener('change',() => {
-    document.body.classList.toggle('light-mode',themeToggle.checked)
-})
-
-wodBtn.addEventListener('click',()=>{
-    fetchData(searchInputStr = 'Serendipity')
-})
-
-tryPills.addEventListener('click',(e) => {
-    btn = e.target.closest('.try-pill')
-    if(!btn) return
-    fetchData(searchInputStr = btn.dataset.word)
-})
-
-clearBtn.addEventListener('click',() => {
-    recentItemArr = []
-    recentList.innerHTML = ''
-    showRecentSection()
-})
-
-function showEmptyState(){
-    loader.classList.add('hidden')
-    wordCard.classList.add('hidden')
-    errorState.classList.add('hidden')
-    emptyState.classList.remove('hidden')
+function gotoHomePage() {
+    landingPage.classList.add('active')
+    mainPage.classList.remove('active')
+    errorPage.classList.remove('active')
+    navSearchBar.style.display = 'none'
 }
-function showLoadingState(){
-    loader.classList.remove('hidden')
-    wordCard.classList.add('hidden')
-    errorState.classList.add('hidden')
-    emptyState.classList.add('hidden')
+function gotoMainPage() {
+    mainPage.classList.add('active')
+    landingPage.classList.remove('active')
+    errorPage.classList.remove('active')
+    navSearchBar.style.display = 'block'
 }
-function showContainer(){
-    loader.classList.add('hidden')
-    wordCard.classList.remove('hidden')
-    errorState.classList.add('hidden')
-    emptyState.classList.add('hidden')
+function gotoErrorPage() {
+    errorPage.classList.add('active')
+    landingPage.classList.remove('active')
+    mainPage.classList.remove('active')
+    navSearchBar.style.display = 'block'
 }
-function showErrorState(){
-    loader.classList.add('hidden')
-    wordCard.classList.add('hidden')
-    errorState.classList.remove('hidden')
-    emptyState.classList.add('hidden')
-}
+logo.addEventListener('click', () => {
+    gotoHomePage()
+})
+retryBtn.addEventListener('click',() => {
+    gotoHomePage()
+})
+//change & save theme 
 
-function showRecentSection(){
-    if(recentItemArr.length === 0){
-        recentSection.classList.add('hidden')
+toggleTheme.addEventListener('click', () => {
+    document.body.classList.toggle('dark')
+    if(document.body.classList.contains('dark')){
+        localStorage.setItem('theme','dark')
     }else{
-        recentSection.classList.remove('hidden')
+        localStorage.setItem('theme','light')
+    }      
+})
+
+function loadTheme(){
+    const savedTheme = localStorage.getItem('theme')
+    if(savedTheme === 'dark'){
+        document.body.classList.add('dark')
     }
 }
 
-function fetchData(searchInputStr){
-    showLoadingState()
-    let url = `${API_URL}${searchInputStr}`
-    fetch(url)
-        .then(response => {
-            if(!response.ok){
-                showErrorState()
-                throw new Error('damm!!')
-            }
-            return response.json()
-        })
-        .then(data => {
-            recentItemArr.unshift(data[0].word)
-            recentItemArr = recentItemArr.slice(0,5)
-            recentList.insertAdjacentHTML('afterbegin',returnRecentItem(data))
-            showRecentSection()
+loadTheme()
 
-            // wordCard.innerHTML = ''
-            displayCard(data)
-            showContainer()
-        })
-        .catch(error => {
-            showErrorState()
-            console.log(error)
-        })    
+//API fetch
+
+async function fetchApi(word){
+    try{
+        loadingOverlay.classList.remove('hide')
+        const response = await fetch (`${API_URL}${word}`)
+        const data = await response.json()
+        renderData(data)
+    }catch(error){
+        gotoErrorPage()
+    }finally{
+        loadingOverlay.classList.add('hide')
+    }
 }
 
-function returnRecentItem(data){
-    return`<div class="recent-pill">
-                <span>${data[0].word}</span>
-                <span class="pill-x">✕</span>
-            </div>`
-}
-
-recentList.addEventListener('click',(e) => {
-    btn = e.target.closest('.pill-x')
-    if (!btn) return
-    const item = btn.closest('.recent-pill')
-    item.remove()
-
-    recentItemArr = recentItemArr.filter(
-        word => word !== item.querySelector('span').textContent
-    )
-    showRecentSection()
+searchBtn.addEventListener('click', () => {  
+    const value = landingPageInput.value.trim()
+    if(value !== ''){
+        landingPageInput.value = ''
+        fetchApi(value)
+        gotoMainPage()
+    }
+})
+navBtn.addEventListener('click', () => {
+    const value = navInput.value.trim()
+    if(value !== ''){
+        navInput.value = ''
+        fetchApi(value)
+        gotoMainPage()
+    }
+})
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' && landingPage.classList.contains('active')){
+        e.preventDefault()
+        const value = landingPageInput.value.trim()
+        if(value !== ''){
+            landingPageInput.value = ''
+            fetchApi(value)
+            gotoMainPage()
+        }
+    }
+    if(e.key === 'Enter' && (mainPage.classList.contains('active') || errorPage.classList.contains('active'))){
+        e.preventDefault()
+        const value = navInput.value.trim()
+        if(value !== ''){
+            navInput.value = ''
+            fetchApi(value)
+            gotoMainPage()
+        }
+    }
 })
 
-function returnMeaningBlock(index){
-    return `<div class="meaning-block" data-index="${index}">
-            </div>`
-}
-
-function returnPos(meaning,index){
-    return `<div class="pos-row">
-                <span class="pos-tag noun">${meaning.partOfSpeech}</span>
-                <div class="pos-line"></div>
+//display-data function
+function renderData(data){
+    let audioUrl = ''
+    mainPageContainer.innerHTML = ''
+    data[0].phonetics[0].audio ? audioUrl = data[0].phonetics[0].audio : audioUrl = ''
+    let phonetic = 'Not Found'
+    if(data[0].phonetic){
+        phonetic = data[0].phonetic
+    }
+        
+    mainPageContainer.innerHTML += `
+        <div class="word-card">
+          <div class="word-card__badge">
+            <span class="material-icons">visibility</span>
+          </div>
+          <h2 class="word-card__word" id="resWord">${data[0].word}</h2>
+          <div class="word-card__meta">
+            <span class="word-card__phonetic" id="resPhonetic">${phonetic}</span>
+            <button class="word-card__audio" id="audioBtn" aria-label="Play audio">
+              <span class="material-icons">volume_up</span>
+            </button>
+          </div>
+        </div>
+        `
+    data[0].meanings.slice(0,2).forEach(
+        meaning => {
+            mainPageContainer.innerHTML += `<div class="defs" id="defsBox">
+              <div class="def-card">
+                <div class="def-card__label">${meaning.partOfSpeech}</div>`
+            meaning.definitions.slice(0,3).forEach(
+                (definition,index) => {
+                    if(index === 0){
+                        mainPageContainer.innerHTML += `<div class="def-card__body">
+                              <p class="def-card__text">${definition.definition}</p>
+                            </div>
+                          </div>`
+                    }else{
+                        mainPageContainer.innerHTML += `<div class="def-card def-card--indent">
+                            <div class="def-card__body def-card__body--green">
+                              <p class="def-card__text">${definition.definition}</p>
+                            </div>
+                          </div>`
+                    }
+                }
+            )
+            mainPageContainer.innerHTML += `</div>`
+        }
+    )
+    mainPageContainer.innerHTML += `<div class="related">
+            <div class="related__col">
+              <h3 class="related__title related__title--green">
+                <span class="material-icons">thumb_up</span> Synonyms
+              </h3>
+              <div class="related__tags" id="synBox">
+                <!-- Items -->
+              </div>
             </div>
+            <div class="related__col">
+              <h3 class="related__title related__title--red">
+                <span class="material-icons">thumb_down</span> Antonyms
+              </h3>
+              <div class="related__tags" id="antBox">
+                <!-- Item -->
+              </div>
+            </div>
+          </div>`
+    let synonyms = document.getElementById('synBox')
+    let antonyms = document.getElementById('antBox')
 
-            <div class="defs-list" data-index="${index}">
+    //synonyms-antonyms
+    synonyms.innerHTML = ''
+    antonyms.innerHTML = ''
+    synList = data[0].meanings[0].synonyms.slice(0,4)
+    antList = data[0].meanings[0].antonyms.slice(0,4)
 
-            </div>`
-}
-
-function returndefinitionItem(item,index){
-    return `<div class="def-item">
-                <span class="def-num">${index + 1}</span>
-                <div class="def-content">
-                    <p class="def-text">${item.definition}</p>
-                    <p class="def-example">${item.example ?? ""}</p>
-                </div>
-            </div>`
-}
-
-function returnSynonymDiv(index){
-    return`<div class="pills-row" data-index="synonym-${index}">
-                <span class="pills-label">Synonyms:</span>
-            </div>`
-}
-
-function returnSynonymList(synonym){
-    return `<button class="syn-pill">${synonym}</button>`
-}
-
-function returnAntonymDiv(index){
-    return`<div class="pills-row" data-index="antonym-${index}">
-                <span class="pills-label">Antonyms:</span>
-            </div>`
-}
-
-function returnAntonymList(index){
-    return `<button class="ant-pill">${index}</button>`
-}
-
-function displayCard(data){
-    document.querySelectorAll('.meaning-block').forEach(el => el.remove())
-    meaningsContainer.innerHTML = ''
-    word.textContent = data[0].word
-    phonetic.textContent = data[0].phonetic
-
-    let meanings = data[0].meanings
-    meanings.forEach( (meaning,index) => {
-
-        let meaningBlock = null
-        meaningsContainer.insertAdjacentHTML('beforebegin',returnMeaningBlock(index))
-
-        document.querySelectorAll('.meaning-block').forEach(item => {
-            if(Number(item.dataset.index) === index){
-                meaningBlock = item
+    if (synList.length === 0) {
+        synonyms.innerHTML = `<span class="tag tag--none">Not found</span>`
+    }else{
+        data[0].meanings[0].synonyms.slice(0,4).forEach(
+            item => {
+                synonyms.innerHTML += `<a href="#" class="tag tag--syn" data-word="${item}">${item}</a>`
             }
-        })
-        
-        meaningBlock.insertAdjacentHTML('beforeend',returnPos(meaning,index))
-
-        let definitionList = null
-        document.querySelectorAll('.defs-list').forEach(item => {
-            if(Number(item.dataset.index) === Number(index)){
-                definitionList = item
+        )
+    }
+    
+    if (antList.length === 0) {
+        antonyms.innerHTML = `<span class="tag tag--none">Not found</span>`
+    }else{
+        data[0].meanings[0].antonyms.slice(0,4).forEach(
+            item => {
+                antonyms.innerHTML += `<a href="#" class="tag tag--syn" data-word="${item}">${item}</a>`
             }
-        })
-
-        let definitions = meaning.definitions.slice(0,3)
-        definitions.forEach( (item,Index)=> {
-            definitionList.insertAdjacentHTML('beforeend',returndefinitionItem(item,Index))
-        })
-
-        // Synonym-Part
-        synonyms = meaning.synonyms.slice(0,4)
-        if(synonyms.length !== 0){
-            meaningBlock.insertAdjacentHTML('beforeend',returnSynonymDiv(index))
+        )
+    }
+    //Audio
+    let audioBtn = document.getElementById('audioBtn')
+    audioBtn.addEventListener('click', () => {
+        if(audioUrl){
+            const sound = new Audio(audioUrl)
+            sound.play()
+        }else{
+            console.log('[We are sorry, no Audio data found for This word.]')
         }
-
-        let synonymList = null
-        document.querySelectorAll('.pills-row').forEach(item => {
-            if(item.dataset.index === `synonym-${index}`){
-                synonymList = item
-            }
-        })
-
-        synonyms.forEach(synonym => {
-            synonymList.insertAdjacentHTML('beforeend',returnSynonymList(synonym))
-        })
-
-        // Antonym-Part
-        antonyms = meaning.antonyms.slice(0,4)
-        
-        if(antonyms.length !== 0){
-            meaningBlock.insertAdjacentHTML('beforeend',returnAntonymDiv(index))
-        }
-
-        let antonymList = null
-        document.querySelectorAll('.pills-row').forEach(item => {
-            if(item.dataset.index === `antonym-${index}`){
-                antonymList = item
-            }
-        })
-
-        antonyms.forEach(antonym => {
-            antonymList.insertAdjacentHTML('beforeend',returnAntonymList(antonym))
-        })
     })
 
-    link.textContent = `https://api.dictionaryapi.dev/api/v2/entries/en/${data[0].word}`
-    link.href = `https://api.dictionaryapi.dev/api/v2/entries/en/${data[0].word}`
-}
+    //syn-ant btn-find
+    let extraBtn = document.querySelectorAll('.tag')
+    let extraContainer = document.querySelector('.related')
+    extraContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.tag')
+        if(!btn) return
+        fetchApi(btn.dataset.word)
+    })
+}   
+
+
+
+
+
+
 

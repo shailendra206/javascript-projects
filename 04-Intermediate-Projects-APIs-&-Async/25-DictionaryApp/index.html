@@ -1,178 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dictionary</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="app">
-        <div class="container">
-            
-            <!-- Header -->
-            <header class="header">
-                <div class="logo">
-                    <span class="logo-icon">📖</span>
-                    <span class="logo-text">Dictionary</span>
-                </div>
-                
-                <!-- Theme Toggle Slider -->
-                <div class="theme-toggle">
-                    <label class="switch">
-                        <input type="checkbox" id="themeToggle">
-                        <span class="slider-track">
-                            <span class="slider-thumb"></span>
-                        </span>
-                    </label>
-                </div>
-            </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surreal Lexicon</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-pattern"></div>
 
-            <!-- Search Box -->
-            <div class="search-section">
-                <div class="search-box" id="searchBox">
-                    <span class="search-icon">🔍</span>
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Search a word..."
-                        autocomplete="off"
-                    >
-                    <button id="searchBtn" class="search-btn">Search</button>
-                </div>
-            </div>
-
-            <!-- Recent Searches -->
-            <div id="recentSection" class="recent-section hidden">
-                <div class="section-header">
-                    <span>🕐 Recent</span>
-                    <button id="clearBtn" class="clear-btn">Clear</button>
-                </div>
-                <div id="recentList" class="recent-list">
-                    <!-- ||item -->
-                </div>
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="empty-state">
-
-                <!-- Hero Illustration -->
-                <div class="empty-hero">
-                    <div class="book-icon">
-                        <span class="book-emoji">📖</span>
-                        <div class="sparkles">
-                            <span>✨</span>
-                            <span>✨</span>
-                            <span>✨</span>
-                        </div>
-                    </div>
-                    <h2>Discover New Words</h2>
-                    <p>Type any word to explore its meaning, pronunciation & more</p>
-                </div>
-            
-                <!-- Word of the Day -->
-                <div class="wod-card">
-                    <div class="wod-header">
-                        <span class="wod-badge">🌟 Word of the Day</span>
-                    </div>
-                    <h3 id="wodWord" class="wod-word">Serendipity</h3>
-                    <p id="wodPhonetic" class="wod-phonetic">/ˌserənˈdɪpɪti/</p>
-                    <p id="wodMeaning" class="wod-meaning">The occurrence of events by chance in a happy way.</p>
-                    <button id="wodBtn" class="wod-btn">
-                        <span>Learn this word</span>
-                        <span>→</span>
-                    </button>
-                </div>
-            
-                <!-- Quick Try Section -->
-                <div class="quick-try">
-                    <p class="try-label">Or try these:</p>
-                    <div class="try-pills">
-                        <button class="try-pill" data-word="eloquent">eloquent</button>
-                        <button class="try-pill" data-word="ephemeral">ephemeral</button>
-                        <button class="try-pill" data-word="resilience">resilience</button>
-                        <button class="try-pill" data-word="wanderlust">wanderlust</button>
-                    </div>
-                </div>
-            
-                <!-- Fun Facts -->
-                <div class="fun-facts">
-                    <div class="fact-card">
-                        <span class="fact-icon">📚</span>
-                        <div class="fact-text">
-                            <strong>170,000+</strong>
-                            <span>words in English</span>
-                        </div>
-                    </div>
-                    <div class="fact-card">
-                        <span class="fact-icon">🎯</span>
-                        <div class="fact-text">
-                            <strong>3,000</strong>
-                            <span>commonly used</span>
-                        </div>
-                    </div>
-                    <div class="fact-card">
-                        <span class="fact-icon">🚀</span>
-                        <div class="fact-text">
-                            <strong>1,000+</strong>
-                            <span>new words/year</span>
-                        </div>
-                    </div>
-                </div>
-            
-            </div>
-
-            <!-- Favorites -->
-            <div id="favsSection" class="favs-section hidden">
-                <div class="section-header">
-                    <span>⭐ Favorites</span>
-                </div>
-                <div id="favsList" class="favs-list"></div>
-            </div>
-
-            <!-- Loader -->
-            <div id="loader" class="loader hidden">
-                <div class="spinner"></div>
-                <p>Searching...</p>
-            </div>
-
-            <!-- Error State -->
-            <div id="errorState" class="error-state hidden">
-                <span class="error-icon">😕</span>
-                <h3>Word not found</h3>
-                <p>Check spelling and try again</p>
-            </div>
-
-            <!-- Word Card (Dynamic) -->
-
-            <!-- Dummy Card (Static Preview) -->
-            <div class="word-card dummy-card hidden">
-                <span class="dummy-label">Preview Card</span>
-                <div class="card-header">
-                    <div class="word-info">
-                        <h1 class="word-title"></h1>
-                        <span class="phonetic"></span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="action-btn">📋</button>
-                        <button class="action-btn">🤍</button>
-                        <button class="audio-btn">🔊</button>
-                    </div>
-                </div>
-            
-                <div class="meanings-container">
-                </div>
-            
-                <div class="source-box">
-                    <span>Source:</span>
-                    <a href="#" target="_blank">https://api.dictionaryapi.dev/api/v2/entries/en/Serendipity</a>
-                </div>
-            </div>
-
+    <!-- Loading Overlay -->
+    <div class="loader hide" id="loader">
+      <div class="loader__eye">
+        <div class="loader__eye-ball">
+          <div class="loader__lid loader__lid--top"></div>
+          <div class="loader__lid loader__lid--bottom"></div>
+          <div class="loader__iris">
+            <div class="loader__pupil"><span class="loader__glint"></span></div>
+          </div>
         </div>
+      </div>
+      <p class="loader__text">Looking<span class="loader__dots"></span></p>
     </div>
 
+    <!-- Navbar -->
+    <nav class="nav">
+      <a href="#" class="nav__logo" id="logoBtn">
+        <span class="material-icons nav__logo-icon">visibility</span>
+        <span class="nav__logo-text">LEXICON</span>
+      </a>
+      <div class="nav__search" id="navSearch">
+        <div class="nav__search-box">
+          <span class="material-icons nav__search-icon">search</span>
+          <input
+            type="text"
+            class="nav__search-input"
+            id="navInput"
+            placeholder="Search the void..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="nav__search-btn" id="navBtn" type="button">
+            FIND
+          </button>
+        </div>
+      </div>
+      <div class="nav__actions">
+        <button class="nav__theme" id="themeBtn" aria-label="Toggle theme">
+          <span class="material-icons">dark_mode</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <main class="page page--landing active" id="pageLanding">
+      <div class="landing__eyes">
+        <div class="eye-float eye-float--big">
+          <div class="eye-float__pupil">
+            <span class="eye-float__glint"></span>
+          </div>
+        </div>
+        <div class="eye-float eye-float--small">
+          <div class="eye-float__iris">
+            <span class="eye-float__glint eye-float__glint--alt"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="hero__card">
+          <div class="hero__inner">
+            <h1 class="hero__title">LEXICON</h1>
+          </div>
+        </div>
+        <div class="hero__blob"></div>
+      </div>
+
+      <div class="search-box">
+        <form class="search-box__form" id="landingForm">
+          <div class="search-box__shadow"></div>
+          <div class="search-box__main">
+            <span class="material-icons search-box__icon">search</span>
+            <input
+              type="text"
+              class="search-box__input"
+              id="landingInput"
+              placeholder="DEFINE YOUR REALITY..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="search-box__btn" type="submit">FIND</button>
+          </div>
+        </form>
+        <p class="search-box__hint">Type a word. See what looks back.</p>
+      </div>
+
+      <!-- <div class="landing__bar">
+      <div class="landing__bar-inner">
+        <span class="landing__bar-text">YOU</span>
+      </div>
+    </div> -->
+    </main>
+
+    <!-- ===== RESULTS PAGE ===== -->
+    <main class="page page--results" id="pageResults">
+      <div class="results">
+        <div class="results__main">
+            <!-- /Items -->
+      </div>
+    </main>
+
+    <!-- ===== ERROR PAGE ===== -->
+    <main class="page page--error" id="pageError">
+      <div class="err-dots"></div>
+      <div class="err-deco err-deco--left"></div>
+      <div class="err-deco err-deco--right"></div>
+
+      <div class="err">
+        <div class="err__banner">
+          <span class="err__dash"></span>
+          <span class="err__corner err__corner--tl"></span>
+          <span class="err__corner err__corner--tr"></span>
+          <span class="err__corner err__corner--bl"></span>
+          <span class="err__corner err__corner--br"></span>
+          <h1 class="err__title">WORD<br />UNSEEN</h1>
+        </div>
+
+        <div class="err__scene">
+          <div class="err__figure">
+            <div class="err__hat">
+              <div class="err__hat-top">
+                <span class="err__hat-line"></span>
+                <span class="err__hat-line"></span>
+                <span class="err__hat-line"></span>
+              </div>
+            </div>
+            <div class="err__ribs">
+              <span class="err__rib err__rib--l"></span>
+              <span class="err__rib err__rib--r"></span>
+            </div>
+            <span class="err__fig-badge"></span>
+            <span class="err__arm"></span>
+            <span class="err__hand"></span>
+            <div class="err__clipboard">
+              <span class="err__clip-inner"></span>
+            </div>
+          </div>
+
+          <div class="err__eye err__eye--lg">
+            <div class="err__eye-veins">
+              <svg fill="none" stroke-width="1" viewBox="0 0 100 100">
+                <path d="M50,10 Q30,30 10,50" stroke="var(--pri)" />
+                <path d="M50,10 Q70,30 90,50" stroke="var(--pri)" />
+                <path d="M10,50 Q30,70 50,90" stroke="var(--pri)" />
+                <path d="M90,50 Q70,70 50,90" stroke="var(--pri)" />
+              </svg>
+            </div>
+            <div class="err__iris err__iris--lg">
+              <div class="err__pupil err__pupil--lg">
+                <span class="err__glint"></span>
+              </div>
+            </div>
+          </div>
+          <div class="err__eye err__eye--md">
+            <div class="err__iris err__iris--md">
+              <div class="err__pupil err__pupil--md"></div>
+            </div>
+          </div>
+          <div class="err__eye err__eye--sm">
+            <div class="err__iris err__iris--sm">
+              <div class="err__pupil err__pupil--sm"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="err__msg">
+          The lexicon turns a blind eye.<br />
+          <span class="err__highlight" id="errDetail"
+            >Your query exists only in the void.</span
+          >
+        </p>
+
+        <button class="err__retry" id="retryBtn">
+          <span>Retry Search</span>
+          <span class="material-icons err__retry-icon">replay</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="foot">
+      <div class="foot__inner">
+        <div class="foot__brand">
+          <span class="material-icons">visibility</span>
+          <span class="foot__name">LEXICON</span>
+        </div>
+        <!-- <div class="foot__links">
+        <a href="#">ABOUT</a>
+        <a href="#">API</a>
+        <a href="#">CONTACT</a>
+      </div> -->
+        <p class="foot__copy">© 1984-202X SURREAL DICTIONARY CO.</p>
+      </div>
+    </footer>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
