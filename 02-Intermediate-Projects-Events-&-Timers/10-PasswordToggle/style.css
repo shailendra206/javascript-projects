@@ -1,430 +1,493 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-
-* {
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+input,
+select,
+button {
+    font-family: inherit;
+    border-radius: 0 !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =============================================
+   FOCUS OVERRIDES
+   ============================================= */
+input:focus,
+button:focus {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px;
+    box-shadow: none !important;
+}
+
+/* =============================================
+   SPLIT CONTAINER
+   ============================================= */
+.split-container {
     display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* =============================================
+   LEFT PANEL (Auth / Dark)
+   — Full screen on mobile & tablet
+   — Half screen on desktop
+   ============================================= */
+.left-panel {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px;
+    padding: 48px 24px;
     position: relative;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
-/* Animated Background Shapes */
-body::before {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    top: -200px;
-    right: -200px;
-    animation: pulse 8s ease-in-out infinite;
-}
-
-body::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    bottom: -150px;
-    left: -150px;
-    animation: pulse 10s ease-in-out infinite reverse;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.8;
+@media (min-width: 480px) {
+    .left-panel {
+        padding: 56px 32px;
     }
 }
 
-.container {
+@media (min-width: 768px) {
+    .left-panel {
+        padding: 64px 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .left-panel {
+        flex: 1;
+        width: auto;
+        padding: 64px;
+    }
+}
+
+.left-panel-inner {
     width: 100%;
-    max-width: 500px;
-    position: relative;
-    z-index: 10;
+    max-width: 400px;
 }
 
-/* ========== PASSWORD CARD ========== */
-.password-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 45px 40px;
-    box-shadow: 
-        0 30px 70px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-    position: relative;
-    overflow: hidden;
-}
-
-/* .password-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-    background-size: 200% 100%;
-    animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-} */
-
-/* ========== HEADER ========== */
-.header {
+/* Title */
+.left-panel-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    margin-bottom: 48px;
     text-align: center;
-    margin-bottom: 40px;
 }
 
-.lock-icon {
-    font-size: 5rem;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.3));
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
+@media (min-width: 480px) {
+    .left-panel-title {
+        font-size: 1.75rem;
+        margin-bottom: 56px;
     }
 }
 
-.header h1 {
-    font-size: 2.2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -0.5px;
+@media (min-width: 768px) {
+    .left-panel-title {
+        font-size: 2rem;
+        margin-bottom: 64px;
+    }
 }
 
-.header p {
-    color: #64748b;
-    font-size: 1rem;
-    font-weight: 500;
+@media (min-width: 1024px) {
+    .left-panel-title {
+        font-size: 1.875rem;
+        margin-bottom: 64px;
+    }
 }
 
-/* ========== PASSWORD SECTION ========== */
-.password-section {
-    margin-bottom: 30px;
+/* =============================================
+   AUTH FORM
+   ============================================= */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
-.input-label {
-    display: block;
-    font-size: 0.85rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
     font-weight: 700;
-    color: #475569;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    display: block;
 }
 
-.password-wrapper {
+.input-wrapper {
     position: relative;
-    margin-bottom: 25px;
 }
 
-.password-input {
+.form-input {
     width: 100%;
-    padding: 18px 55px 18px 22px;
-    border: 3px solid #e5e7eb;
-    border-radius: 15px;
-    font-size: 1.05rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: #f9fafb;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    font-size: 0.9375rem;
+    letter-spacing: 0.15em;
+    padding: 12px 60px 12px 0;
+    /* text-transform: uppercase; */
+    transition: border-color 0.2s;
 }
 
-.password-input:focus {
-    border-color: #667eea;
-    background: white;
-    box-shadow: 
-        0 0 0 4px rgba(102, 126, 234, 0.1),
-        0 10px 25px rgba(102, 126, 234, 0.15);
-    transform: translateY(-2px);
+@media (min-width: 480px) {
+    .form-input {
+        font-size: 1rem;
+    }
 }
 
-.password-input::placeholder {
-    color: #cbd5e1;
-    font-weight: 400;
+@media (min-width: 768px) {
+    .form-input {
+        font-size: 1.125rem;
+    }
 }
 
+.form-input::placeholder {
+    color: #52525b;
+    text-transform: uppercase;
+}
+
+.form-input:focus {
+    border-bottom-color: #ffffff;
+    outline: none !important;
+}
+
+/* =============================================
+   TOGGLE BUTTON
+   ============================================= */
 .toggle-btn {
     position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    right: 0;
+    bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #a1a1aa;
+    background: none;
     border: none;
     cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-transform: uppercase;
+    padding: 0;
+    transition: color 0.2s;
 }
 
 .toggle-btn:hover {
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    color: #ffffff;
 }
 
-.toggle-btn:active {
-    transform: translateY(-50%) scale(0.95);
+.toggle-btn:focus {
+    outline: none !important;
 }
 
-.toggle-btn svg {
-    color: white;
-    transition: all 0.3s ease;
+/* =============================================
+   FORM ACTIONS
+   ============================================= */
+.form-actions {
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
-.hidden {
+/* =============================================
+   AUTHENTICATE BUTTON
+   ============================================= */
+.btn-authenticate {
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 12px 48px;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+@media (min-width: 480px) {
+    .btn-authenticate {
+        width: auto;
+        padding: 12px 56px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn-authenticate {
+        padding: 12px 64px;
+    }
+}
+
+.btn-authenticate:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* =============================================
+   AUTH LINKS
+   ============================================= */
+.auth-links {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+@media (min-width: 480px) {
+    .auth-links {
+        gap: 32px;
+    }
+}
+
+.auth-link {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: #71717a;
+    transition: color 0.2s;
+}
+
+.auth-link:hover {
+    color: #ffffff;
+}
+
+/* =============================================
+   BOTTOM LABELS
+   ============================================= */
+.bottom-labels {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+}
+
+@media (min-width: 480px) {
+    .bottom-labels {
+        margin-top: 64px;
+    }
+}
+
+@media (min-width: 768px) {
+    .bottom-labels {
+        margin-top: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bottom-labels {
+        margin-top: 96px;
+    }
+}
+
+.bottom-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+}
+
+/* =============================================
+   SHOP BUTTON
+   ============================================= */
+.shop-wrapper {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (min-width: 480px) {
+    .shop-wrapper {
+        bottom: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .shop-wrapper {
+        bottom: 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .shop-wrapper {
+        bottom: 64px;
+    }
+}
+
+.btn-shop {
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 8px 40px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+@media (min-width: 480px) {
+    .btn-shop {
+        padding: 8px 48px;
+    }
+}
+
+.btn-shop:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* =============================================
+   RIGHT PANEL (Branding / Light)
+   — HIDDEN on mobile & tablet
+   — VISIBLE only on desktop (1024px+)
+   ============================================= */
+.right-panel {
     display: none;
 }
 
-/* ========== STRENGTH INDICATOR ========== */
-.strength-indicator {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 2px solid #e5e7eb;
+@media (min-width: 1024px) {
+    .right-panel {
+        display: flex;
+        flex: 1;
+        background-color: #ffffff;
+        color: #000000;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 64px;
+        border-left: 1px solid #000000;
+        min-height: 100vh;
+    }
 }
 
-.strength-bar {
-    flex: 1;
-    height: 10px;
-    background: #e5e7eb;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
+/* Header */
+.right-panel-header {
+    margin-bottom: 48px;
 }
 
-.strength-bar::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shimmer 2s infinite;
+.right-panel-title {
+    font-size: 2.25rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
 }
 
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+@media (min-width: 1280px) {
+    .right-panel-title {
+        font-size: 3rem;
+    }
 }
 
-.strength-fill {
-    height: 100%;
-    width: 0%;
-    border-radius: 10px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.strength-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: shine 1.5s infinite;
-}
-
-@keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-.strength-fill.weak {
-    width: 33%;
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-}
-
-.strength-fill.medium {
-    width: 66%;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-}
-
-.strength-fill.strong {
-    width: 100%;
-    background: linear-gradient(135deg, #10b981, #059669);
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-}
-
-.strength-text {
-    font-size: 0.9rem;
-    font-weight: 800;
-    min-width: 80px;
-    text-align: right;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.strength-text.weak {
-    color: #ef4444;
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
-}
-
-.strength-text.medium {
-    color: #f59e0b;
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
-}
-
-.strength-text.strong {
-    color: #10b981;
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-}
-
-/* ========== ACTIONS ========== */
-.actions {
+/* Center Content */
+.right-panel-center {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-.actions button {
-    padding: 18px 28px;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
+    flex-grow: 1;
+    padding: 16px 0;
 }
 
-.actions button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.5s, height 0.5s;
+/* Artwork */
+.artwork-wrapper {
+    max-width: 300px;
+    margin-bottom: 32px;
 }
 
-.actions button:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.btn-generate {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-    position: relative;
-}
-
-.btn-generate:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-}
-
-.btn-copy {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    box-shadow: 0 10px 30px rgba(240, 147, 251, 0.4);
-}
-
-.btn-copy:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 40px rgba(240, 147, 251, 0.5);
-}
-
-.actions button:active {
-    transform: translateY(0);
-}
-
-.actions button span {
-    position: relative;
-    z-index: 1;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 640px) {
-    .password-card {
-        padding: 35px 28px;
-    }
-
-    .header h1 {
-        font-size: 1.8rem;
-    }
-
-    .lock-icon {
-        font-size: 4rem;
-    }
-
-    .password-input {
-        font-size: 1rem;
-    }
-
-    .actions button {
-        font-size: 1rem;
+@media (min-width: 1280px) {
+    .artwork-wrapper {
+        max-width: 320px;
     }
 }
 
-@media (max-width: 480px) {
-    .password-card {
-        padding: 30px 22px;
-    }
+.artwork-image {
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.25);
+}
 
-    .header h1 {
-        font-size: 1.6rem;
-    }
+/* Mission Text */
+.mission-text {
+    font-size: 10px;
+    line-height: 1.6;
+    letter-spacing: 0.15em;
+    max-width: 280px;
+    text-align: center;
+    margin-bottom: 48px;
+}
 
-    .strength-indicator {
-        flex-direction: column;
-        align-items: stretch;
-    }
+/* Footer */
+.right-panel-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
 
-    .strength-text {
-        text-align: center;
+.btn-estate {
+    border: 1px solid #000000;
+    background-color: transparent;
+    color: #000000;
+    padding: 8px 48px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-estate:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* =============================================
+   RIGHT PANEL FOCUS OVERRIDE (light bg)
+   ============================================= */
+@media (min-width: 1024px) {
+    .right-panel input:focus,
+    .right-panel button:focus {
+        outline: 2px solid #000000 !important;
     }
 }

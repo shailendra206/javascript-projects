@@ -1,66 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Toggle</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Minimalist Authentication | John Chamberlain Inspired</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
-    <div class="container">
-        
-        <div class="password-card">
-            
-            <div class="header">
-                <div class="lock-icon">🔐</div>
-                <h1>Password Manager</h1>
-                <p>Secure your account</p>
-            </div>
 
-            <div class="password-section">
-                
-                <label class="input-label">Enter Password</label>
-                
-                <div class="password-wrapper">
-                    <input 
-                        type="password" 
-                        class="password-input" 
-                        id="passwordInput" 
-                        placeholder="Enter your password"
-                    >
-                    <button class="toggle-btn" id="toggleBtn">
-                        <svg class="eye-icon" id="eyeIcon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <svg class="eye-slash-icon hidden" id="eyeSlashIcon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M3 3l18 18M10.5 10.5a3 3 0 104.5 4.5m-7-1.5C5 12 3 10 2 8m20 4s-3 7-10 7a9 9 0 01-5-1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                </div>
+    <main class="split-container">
 
-                <div class="strength-indicator" id="strengthIndicator">
-                    <div class="strength-bar">
-                        <div class="strength-fill" id="strengthFill"></div>
+        <!-- Left Panel (Authentication / Dark) -->
+        <section class="left-panel">
+            <div class="left-panel-inner">
+
+                <h2 class="left-panel-title">CHAMBERLAIN</h2>
+
+                <!-- Password Form -->
+                <form class="auth-form">
+                    <div class="form-group">
+                        <label class="form-label" for="password">ACCESS CODE</label>
+                        <div class="input-wrapper">
+                            <input
+                                class="form-input"
+                                id="password"
+                                name="password"
+                                placeholder="ENTER PASSWORD"
+                                type="password"
+                                autocomplete="off"
+                            />
+                            <button class="toggle-btn" id="togglePassword" type="button">
+                                Show
+                            </button>
+                        </div>
                     </div>
-                    <span class="strength-text" id="strengthText">Weak</span>
+
+                    <div class="form-actions">
+                        <button class="btn-authenticate" type="submit">AUTHENTICATE</button>
+                        <nav class="auth-links">
+                            <a class="auth-link" href="#">FORGOT KEY</a>
+                            <a class="auth-link" href="#">REQUEST ACCESS</a>
+                        </nav>
+                    </div>
+                </form>
+
+                <!-- Bottom Labels -->
+                <div class="bottom-labels">
+                    <span class="bottom-label">PRINTS</span>
+                    <span class="bottom-label">PUBLICATIONS</span>
+                    <span class="bottom-label">PHOTOGRAPHS</span>
                 </div>
 
             </div>
 
-            <div class="actions">
-                <button class="btn-generate" id="generateBtn">
-                    Generate Strong Password
-                </button>
-                <button class="btn-copy" id="copyBtn">
-                    Copy Password
-                </button>
+            <!-- Shop Button -->
+            <div class="shop-wrapper">
+                <button class="btn-shop">THE SHOP</button>
+            </div>
+        </section>
+
+        <!-- Right Panel (Branding / Light) — hidden on mobile & tablet -->
+        <section class="right-panel">
+
+            <header class="right-panel-header">
+                <h1 class="right-panel-title">JOHNCHAMBERLAIN</h1>
+            </header>
+
+            <div class="right-panel-center">
+                <div class="artwork-wrapper">
+                    <img
+                        alt="John Chamberlain Sculpture"
+                        class="artwork-image"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBF3abGqPknkeOZwRkeWBsH_EtGoWqMPiRTtKn1-s0pTjYI8eD9PTrqK1YVtDAEwe0Kr8YyYeJvTJ03hFFlMGuQmZurAPySKRxGECjJSdV9D84CaRUClcJF95ZlY_1MJR4k7qingbSa06U2Z16SULh26-FlgUQ_662_BGzjsyQrWVIo42mtKrBML3IYw9BVkBS5bxzTfoCKn0GK5zn9Y9PYIx1PTwG7YWblsSanMobthQqK-upgPJ4bIzLfzDEiFRTS3dsKps1ws98"
+                    />
+                </div>
+                <p class="mission-text">
+                    OUR MISSION IS TO CULTIVATE CHAMBERLAIN'S EXPANSIVE, HUMANISTIC PHILOSOPHY BY BRINGING IT INTO THE WORLD AND INVITING THE WORLD TO EXPERIENCE AND EXPLORE HIS WORK.
+                </p>
             </div>
 
-        </div>
+            <div class="right-panel-footer">
+                <button class="btn-estate">THE ESTATE</button>
+            </div>
 
-    </div>
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
 </body>
