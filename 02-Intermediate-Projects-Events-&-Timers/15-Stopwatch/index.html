@@ -1,64 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stopwatch</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Precision Architect — Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
-    <!-- Floating shapes background -->
-    <div class="shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
 
-    <div class="stopwatch-container">
-        
-        <div class="watch-header">
-            <div class="pulse-dot"></div>
-            <h1>STOPWATCH</h1>
-            <div class="pulse-dot"></div>
-        </div>
+    <div class="page-shell">
 
-        <!-- Rectangular Display -->
-        <div class="watch-display">
-            <div class="time-box">
-                <span id="hours">0</span>
-                <span class="label">HOURS</span>
+        <!-- ===== HEADER ===== -->
+        <header class="main-header">
+            <div class="header-left">
+                <span class="material-symbols-outlined header-icon">timer</span>
+                <h2 class="header-title">Precision.Architect</h2>
             </div>
-            <span class="separator">:</span>
-            <div class="time-box">
-                <span id="minutes">0</span>
-                <span class="label">MINUTES</span>
-            </div>
-            <span class="separator">:</span>
-            <div class="time-box">
-                <span id="seconds">0</span>
-                <span class="label">SECONDS</span>
-            </div>
-        </div>
+        </header>
 
-        <!-- Control Buttons -->
-        <div class="controls">
-            <button class="btn btn-start" id="startBtn">
-                <span class="icon">▶</span>
-                START
-            </button>
-            <button class="btn btn-stop" id="stopBtn" disabled>
-                <span class="icon">⏸</span>
-                STOP
-            </button>
-            <button class="btn btn-reset" id="resetBtn">
-                <span class="icon">↻</span>
-                RESET
-            </button>
-        </div>
+        <!-- ===== MAIN ===== -->
+        <main class="main-content">
+
+            <!-- Timer Display -->
+            <div class="timer-display">
+                <span class="timer-session-label">Current Session</span>
+                <h1 class="timer-value">
+                    00:00:00:00</span>
+                </h1>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-card">
+                <div class="controls-row">
+                    <button class="btn-control btn-primary">Start</button>
+                    <button class="btn-control btn-outline" id="stopBtn">Stop</button>
+                    <button class="btn-control btn-outline" id="resetBtn">Reset</button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="main-footer">
+            <div class="footer-status">Status: System Ready // Frequency: 1.000ms</div>
+            <div class="footer-version">Precision Timing</div>
+        </footer>
 
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

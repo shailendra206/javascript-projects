@@ -661,3 +661,23 @@ body::before {
 .reset-btn:active {
     transform: translateY(2px);
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
+* {
+    scrollbar-width: none;
+}
+* {
+    -ms-overflow-style: none;
+}
+html,
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}

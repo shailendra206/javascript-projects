@@ -1,43 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookmark Manager</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Archive - Curated Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <h1>🔖 Bookmark Manager</h1>
-        <p class="subtitle">Your bookmarks are saved locally</p>
-
-        <!-- Add Bookmark Form -->
-        <form class="bookmark-form" id="bookmarkForm">
-            <input 
-                type="text" 
-                id="siteName" 
-                placeholder="Site Name"
-                required
-            >
-            <input 
-                type="url" 
-                id="siteUrl" 
-                placeholder="https://example.com"
-                required
-            >            
-            <button type="submit" class="add-button">Add</button>
-        </form>
-
-        <!-- Bookmarks List -->
-        <div class="bookmarks-list" id="bookmarksList">
-            
-            <!-- Bookmark items will be added here -->
-        </div>
+    <div class="layout-container">
         
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-            <p>No bookmarks yet. Add one above!</p>
-        </div>
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <!-- <div class="logo-icon">
+                        <span class="material-symbols-outlined">filter_frames</span>
+                    </div> -->
+                    <h2 class="logo-text">Archive</h2>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <div class="hero-section">
+                <h1 class="hero-title">Curated Registry</h1>
+                <p class="hero-subtitle">A cinematic repository for digital inspiration and high-end aesthetics.</p>
+            </div>
+
+            <section class="input-section">
+                <div class="input-grid">
+                    <div class="input-group input-title">
+                        <label class="input-label">Bookmark Title</label>
+                        <input type="text" class="input-field" id="bookmarkTitle" placeholder="The New Minimalist..."/>
+                    </div>
+                    <div class="input-group input-url">
+                        <label class="input-label">Bookmark URL</label>
+                        <input type="text" class="input-field" id="bookmarkUrl" placeholder="https://editorial.design/inspiration"/>
+                    </div>
+                    <div class="input-group input-button">
+                        <button class="save-btn" id="saveBtn">
+                            <span>Save</span>
+                            <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="bookmarks-grid" id="bookmarksGrid"></div>
+
+            <div class="empty-state" id="emptyState">
+                <div class="empty-state-content">
+                    <span class="material-symbols-outlined empty-icon">bookmark_border</span>
+                    <h3 class="empty-title">No Bookmarks Yet</h3>
+                    <p class="empty-text">Start curating your digital inspiration by adding your first bookmark above.</p>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-copy">© 2026 Archive. Curating the timeless.</div>
+            </footer>
+
+        </main>
     </div>
 
     <script src="script.js"></script>

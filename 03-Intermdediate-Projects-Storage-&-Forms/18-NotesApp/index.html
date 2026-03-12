@@ -1,36 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Editorial Workspace - Professional Note-Taking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <h1>📝 Notes App</h1>
-        <p class="subtitle">Your notes are saved automatically</p>
+    <div class="layout-container">
+        
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <!-- <div class="logo-icon">
+                        <span class="material-symbols-outlined">filter_frames</span>
+                    </div> -->
+                    <h2 class="logo-text">Editorial</h2>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+            </div>
+        </header>
 
-        <!-- Add Note Section -->
-        <div class="add-note-section">
-            <textarea 
-                id="noteInput" 
-                placeholder="Write your note here..."
-                rows="4"
-            ></textarea>
-            <button class="btn-add" id="addNoteBtn">+ Add Note</button>
-        </div>
+        <main class="main-content">
+            
+            <div class="hero-section">
+                <h1 class="hero-title">Recent Notes</h1>
+                <p class="hero-subtitle">A cinematic repository for digital thoughts and high-end editorial work.</p>
+            </div>
 
-        <!-- Notes Grid -->
-        <div class="notes-grid" id="notesGrid">
-            <!-- Notes will be added here dynamically -->
-        </div>
+            <section class="input-section">
+                <div class="input-wrapper">
+                    <div class="input-field-wrapper">
+                        <label class="input-label">New Entry</label>
+                        <textarea 
+                            class="input-textarea" 
+                            id="noteInput" 
+                            placeholder="Start typing your editorial notes here..."
+                        ></textarea>
+                    </div>
+                    <div class="input-button-wrapper">
+                        <button class="add-btn" id="addNoteBtn">
+                            <span>Add Note</span>
+                            <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-            <div class="empty-icon">📭</div>
-            <p>No notes yet. Start writing!</p>
-        </div>
+            <div class="notes-grid" id="notesGrid"></div>
+
+            <div class="empty-state" id="emptyState">
+                <div class="empty-state-content">
+                    <span class="material-symbols-outlined empty-icon">edit_note</span>
+                    <h3 class="empty-title">No Notes Yet</h3>
+                    <p class="empty-text">Start capturing your editorial thoughts by adding your first note above.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer-copy">© 2026 Editorial. Curating the timeless.</div>
+            
+        </footer>
+
     </div>
 
     <script src="script.js"></script>

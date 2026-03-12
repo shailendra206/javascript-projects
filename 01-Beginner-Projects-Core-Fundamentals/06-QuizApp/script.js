@@ -73,7 +73,27 @@ function updateResultScreen(){
 }
 
 const playAgain = document.getElementById('restartBtn')
-playAgain.addEventListener('click',()=>{
+playAgain.addEventListener('click', () => {
+    currentIndex = 0
+    score = 0
+    
+    allQuestion.forEach((question) => {
+        const options = question.querySelectorAll('.option-btn')
+        options.forEach((option) => {
+            option.classList.remove('correct', 'wrong')
+        })
+        
+        const nextBtn = question.querySelector('.next-btn')
+        if (nextBtn) {
+            nextBtn.disabled = true
+        }
+        
+        const updateScore = question.querySelector('.score')
+        if (updateScore) {
+            updateScore.textContent = 0
+        }
+    })
+    
     resultScreen.classList.add('hidden')
     startScreen.classList.remove('hidden')
 })

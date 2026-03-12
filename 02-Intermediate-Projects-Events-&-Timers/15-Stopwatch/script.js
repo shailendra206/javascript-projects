@@ -1,44 +1,39 @@
-let startTime = 0 
-let elapsedTime = 0
-let timer = null
-const startBtn = document.querySelector('.btn-start')
-const stopBtn = document.querySelector('.btn-stop')
-const resetBtn = document.querySelector('.btn-reset')
-startBtn.addEventListener('click',()=>{
-    startTime = Date.now() - elapsedTime
+let timerText = document.querySelector('.timer-value')
+let startBtn = document.querySelector('.btn-primary')
+let stopBtn = document.getElementById('stopBtn')
+let resetBtn = document.getElementById('resetBtn')
+let days=null,hours=null,minutes=null,seconds=null
+let totalSeconds = 0
+let intervalId = null
+let isRunning = false
 
-    timer = setInterval(()=>{
-        elapsedTime = Date.now() - startTime;
-        updateTime()
-    },1000)
-
-    stopBtn.disabled = false;
+startBtn.addEventListener('click', () => {
+    displayTime()
 })
-
-stopBtn.addEventListener('click',()=>{
-    clearInterval(timer)
-    console.log(elapsedTime)
-    // updateTime()
+stopBtn.addEventListener('click', () => {
+    clearInterval(intervalId)
+    isRunning = false
 })
-
 resetBtn.addEventListener('click', () => {
-  clearInterval(timer);
-  timer = null;
-  elapsedTime = 0;
-  updateTime()
-});
+    clearInterval(intervalId)
+    isRunning = false
+    timerText.textContent = '00:00:00:00'
+    totalSeconds = 0
+    intervalId = null
+})
+function displayTime(){
+    if(isRunning) return
+    isRunning = true
+    intervalId = setInterval(() => {
+        totalSeconds++
+        updateDisplay(totalSeconds)
+    },1000)
+}
 
-const updateHours = document.getElementById('hours')
-const updateMinutes = document.getElementById('minutes')
-const updateSeconds = document.getElementById('seconds')
-
-function updateTime(){
-    let totalSeconds = Math.floor(elapsedTime/1000)
-    let hours = Math.floor(totalSeconds / (60*60))
-    let minutes = Math.floor((totalSeconds / (60)) % 3600)
-    let seconds = Math.floor(totalSeconds % 60)
-
-    updateHours.textContent = hours
-    updateMinutes.textContent = minutes
-    updateSeconds.textContent = seconds
+function updateDisplay(totalSeconds){
+    days = String(Math.floor(Number (totalSeconds / 86400) )).padStart(2, '0')
+    hours = String(Math.floor(Number (totalSeconds % 86400) / 3600)).padStart(2, '0')
+    minutes = String(Math.floor(Number (totalSeconds % 3600) / 60)).padStart(2, '0')
+    seconds = String(Math.floor(Number (totalSeconds % 60))).padStart(2, '0')
+    timerText.textContent = `${days}:${hours}:${minutes}:${seconds}`
 }

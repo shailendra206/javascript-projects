@@ -1,89 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Toggle</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        
-        <div class="nav-container">
-            
-            <!-- Logo -->
-            <div class="nav-logo">
-                <span class="logo-icon">🚀</span>
-                <span class="logo-text">BrandName</span>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oni-chan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Noto+Serif+JP:wght@200;300;400&family=Inter:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── Navbar ───────────────────────────────────── -->
+    <nav id="navbar">
+      <a class="nav-brand" onclick="scrollToSection('home')">
+        <!-- <span class="brand-main">Oni-chan</span> -->
+        <span class="brand-jp">おにいちゃん</span>
+      </a>
 
-            <!-- Nav Links (Desktop) -->
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#portfolio" class="nav-link">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
+      <ul class="nav-links">
+        <li>
+          <a
+            class="nav-link active"
+            data-target="home"
+            onclick="scrollToSection('home')"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            data-target="works"
+            onclick="scrollToSection('works')"
+            >Works</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            data-target="about"
+            onclick="scrollToSection('about')"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            data-target="contact"
+            onclick="scrollToSection('contact')"
+            >Contact</a
+          >
+        </li>
+      </ul>
 
-            <!-- Hamburger Icon (Mobile) -->
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-        </div>
-
+      <button
+        class="hamburger"
+        id="hamburger"
+        onclick="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
-    <!-- Hero Section (Demo Content) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Our Website</h1>
-            <p>Resize your browser or open on mobile to see the hamburger menu!</p>
-            <button class="cta-btn">Get Started</button>
+    <!-- ── Mobile Menu ──────────────────────────────── -->
+    <!-- <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a
+          data-target="home"
+          onclick="
+            scrollToSection('home');
+            toggleMenu();
+          "
+          >Home</a
+        >
+        <a
+          data-target="works"
+          onclick="
+            scrollToSection('works');
+            toggleMenu();
+          "
+          >Works</a
+        >
+        <a
+          data-target="about"
+          onclick="
+            scrollToSection('about');
+            toggleMenu();
+          "
+          >About</a
+        >
+        <a
+          data-target="contact"
+          onclick="
+            scrollToSection('contact');
+            toggleMenu();
+          "
+          >Contact</a
+        >
+      </div>
+      <div class="mobile-deco-jp" aria-hidden="true">雪の華</div>
+    </div> -->
+
+    <!-- ── Progress Rail ────────────────────────────── -->
+    <!-- <div class="progress-rail" id="progressRail">
+      <div
+        class="rail-dot active"
+        data-target="home"
+        onclick="scrollToSection('home')"
+      ></div>
+      <div
+        class="rail-dot"
+        data-target="works"
+        onclick="scrollToSection('works')"
+      ></div>
+      <div
+        class="rail-dot"
+        data-target="about"
+        onclick="scrollToSection('about')"
+      ></div>
+      <div
+        class="rail-dot"
+        data-target="contact"
+        onclick="scrollToSection('contact')"
+      ></div>
+    </div> -->
+
+    <!-- ══ HOME ════════════════════════════════════════ -->
+    <section id="home" class="section">
+      <div class="sec-label">01 — Home</div>
+
+      <!-- Cinematic mist layers -->
+      <div class="mist-layer mist-1" aria-hidden="true"></div>
+      <div class="mist-layer mist-2" aria-hidden="true"></div>
+
+      <!-- Large background JP kanji — decoration -->
+      <div class="bg-kanji" aria-hidden="true">雪</div>
+
+      <div class="home-content">
+        <div class="home-jp-stack" aria-hidden="true">
+          <span>雪</span>
+          <span>の</span>
+          <span>華</span>
         </div>
+        <div class="home-text">
+          <p class="home-eyebrow">A world of quiet</p>
+          <h1 class="home-headline">Beauty within<br />stillness</h1>
+          <p class="home-sub">雪の華 — Snow Flower</p>
+        </div>
+      </div>
+
+      <div class="scroll-cue">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
     </section>
 
-    <!-- Demo Sections -->
-    <section class="demo-section" id="home">
-        <h2>🏠 Home Section</h2>
-        <p>This is the home section content.</p>
+    <!-- ══ WORKS ════════════════════════════════════════ -->
+    <section id="works" class="section">
+      <div class="sec-label">02 — Works</div>
+      <div class="sec-heading">
+        <p class="sec-heading-en">Selected Works</p>
+        <p class="sec-heading-jp" aria-hidden="true">作品集</p>
+      </div>
+
+      <div class="works-grid">
+        <div class="work-cell" data-jp="映">
+          <span class="wc-num">001</span><span class="wc-label">Film</span>
+        </div>
+        <div class="work-cell" data-jp="写">
+          <span class="wc-num">002</span
+          ><span class="wc-label">Photography</span>
+        </div>
+        <div class="work-cell" data-jp="音">
+          <span class="wc-num">003</span><span class="wc-label">Music</span>
+        </div>
+        <div class="work-cell" data-jp="絵">
+          <span class="wc-num">004</span><span class="wc-label">Graphics</span>
+        </div>
+        <div class="work-cell" data-jp="網">
+          <span class="wc-num">005</span
+          ><span class="wc-label">Web Design</span>
+        </div>
+        <div class="work-cell" data-jp="動">
+          <span class="wc-num">006</span><span class="wc-label">Animation</span>
+        </div>
+      </div>
     </section>
 
-    <section class="demo-section" id="about">
-        <h2>👤 About Section</h2>
-        <p>This is the about section content.</p>
+    <!-- ══ ABOUT ════════════════════════════════════════ -->
+    <section id="about" class="section">
+      <div class="sec-label">03 — About</div>
+      <div class="sec-heading">
+        <p class="sec-heading-en">About Us</p>
+        <p class="sec-heading-jp" aria-hidden="true">私たちについて</p>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-vert-jp" aria-hidden="true">静寂</div>
+        <div class="about-rule"></div>
+        <div class="about-body">
+          <h2 class="about-title">Designing<br />stillness</h2>
+          <p class="about-copy">
+            We place silence and beauty at<br />
+            the center of everything we make.<br />
+            We value the meaning found in space,<br />
+            and seek depth within simplicity.
+          </p>
+          <p class="about-deco-jp" aria-hidden="true">静けさをデザインする</p>
+        </div>
+      </div>
     </section>
 
-    <section class="demo-section" id="services">
-        <h2>⚙️ Services Section</h2>
-        <p>This is the services section content.</p>
+    <!-- ══ CONTACT ══════════════════════════════════════ -->
+    <section id="contact" class="section">
+      <div class="sec-label">04 — Contact</div>
+
+      <!-- mist for contact -->
+      <div class="mist-layer mist-1" aria-hidden="true"></div>
+
+      <div class="contact-block">
+        <p class="contact-eyebrow-jp" aria-hidden="true">お問い合わせ</p>
+        <h2 class="contact-headline">Let's create<br />together</h2>
+        <div class="contact-rule"></div>
+        <a class="contact-email" href="mailto:hello@yamatekudsai.jp"
+          >hello@Oni-chan.jp</a
+        >
+      </div>
     </section>
 
-    <section class="demo-section" id="portfolio">
-        <h2>💼 Portfolio Section</h2>
-        <p>This is the portfolio section content.</p>
-    </section>
-
-    <section class="demo-section" id="contact">
-        <h2>📧 Contact Section</h2>
-        <p>This is the contact section content.</p>
-    </section>
+    <!-- ── Mobile Bottom Nav ──────────────────────────── -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav">
+      <a
+        class="bottom-nav-item active"
+        data-target="home"
+      >
+        <span class="bottom-nav-icon">家</span>
+        <span class="bottom-nav-label">Home</span>
+      </a>
+      <a
+        class="bottom-nav-item"
+        data-target="works"
+      >
+        <span class="bottom-nav-icon">作</span>
+        <span class="bottom-nav-label">Works</span>
+      </a>
+      <a
+        class="bottom-nav-item"
+        data-target="about"
+      >
+        <span class="bottom-nav-icon">私</span>
+        <span class="bottom-nav-label">About</span>
+      </a>
+      <a
+        class="bottom-nav-item"
+        data-target="contact"
+      >
+        <span class="bottom-nav-icon">問</span>
+        <span class="bottom-nav-label">Contact</span>
+      </a>
+    </nav>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,52 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Strength Checker</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Password Strength Validator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🔐</div>
-        <h1>Password Strength</h1>
-        <p class="subtitle">Check how strong your password is</p>
+    <div class="layout-container">
+        
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <h2 class="logo-text">Validator</h2>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+            </div>
+        </header>
 
-        <!-- Password Input -->
-        <div class="input-wrapper">
-            <input 
-                type="password" 
-                id="passwordInput" 
-                placeholder="Enter your password"
-            >
-            <button class="toggle-btn" id="toggleBtn">👁️</button>
-        </div>
+        <main class="main-content">
+            
+            <div class="validator-card">
+                
+                <div class="card-header">
+                    <h1 class="card-title">Password Integrity</h1>
+                    <p class="card-subtitle">Corporate Standard Security Analysis</p>
+                </div>
 
-        <!-- Strength Bar -->
-        <div class="strength-bar">
-            <div class="bar-fill" id="barFill"></div>
-        </div>
-        <p class="strength-text" id="strengthText">Enter a password</p>
+                <div class="input-section">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Target Password</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="password" 
+                                class="form-input" 
+                                id="passwordInput" 
+                                placeholder="ENTER CREDENTIALS..."
+                            />
+                            <button class="visibility-toggle" id="visibilityToggle">
+                                <span class="material-symbols-outlined" id="visibilityIcon">visibility</span>
+                            </button>
+                        </div>
+                    </div>
 
-        <!-- Requirements Checklist -->
-        <ul class="requirements">
-            <li id="reqLength">
-                <span class="icon">✖️</span>
-                At least 6 characters
-            </li>
-            <li id="reqUpper">
-                <span class="icon">✖️</span>
-                Has uppercase letter
-            </li>
-            <li id="reqNumber">
-                <span class="icon">✖️</span>
-                Has a number
-            </li>
-            <li id="reqSpecial">
-                <span class="icon">✖️</span>
-                Has special character (!@#$%)
-            </li>
-        </ul>
+                    <div class="strength-meter">
+                        <div class="strength-header">
+                            <div class="strength-info">
+                                <p class="strength-label">Security Rating</p>
+                                <p class="strength-value" id="strengthText">No Password</p>
+                            </div>
+                            <p class="strength-percentage" id="strengthPercentage">0%</p>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                        </div>
+
+                        <div class="criteria-grid">
+                            <div class="criteria-item" id="criteriaLength">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Length (8+)</span>
+                            </div>
+                            <div class="criteria-item" id="criteriaSymbols">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Symbols</span>
+                            </div>
+                            <div class="criteria-item" id="criteriaMixed">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Mixed Case</span>
+                            </div>
+                            <div class="criteria-item" id="criteriaNumbers">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Numbers</span>
+                            </div>
+                            <div class="criteria-item" id="criteriaLong">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Long (12+)</span>
+                            </div>
+                            <div class="criteria-item" id="criteriaNoCommon">
+                                <span class="material-symbols-outlined criteria-icon">circle</span>
+                                <span class="criteria-text">Not Common</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="verify-btn" id="verifyBtn">
+                        <span>Verify Strength</span>
+                        <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+                    </button>
+
+                    <p class="encryption-note">Encryption standard AES-256 applied during validation</p>
+
+                </div>
+
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <span class="material-symbols-outlined info-icon">gpp_maybe</span>
+                    <h4 class="info-title">Weakness Check</h4>
+                    <p class="info-text">Checks against common dictionary words and known compromised databases.</p>
+                </div>
+                <div class="info-card">
+                    <span class="material-symbols-outlined info-icon">history</span>
+                    <h4 class="info-title">Entropy Score</h4>
+                    <p class="info-text">Calculates mathematical randomness to predict brute-force resistance time.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer-copy">© 2026 Validator. Secure & Private.</div>
+        </footer>
+
     </div>
 
     <script src="script.js"></script>

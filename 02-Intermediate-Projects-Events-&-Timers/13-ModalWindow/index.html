@@ -1,168 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Store - Quick View</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">🛍️ ShopHub</div>
-        <nav class="nav">
-            <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">Cart (0)</a>
-        </nav>
-    </header>
 
-    <!-- Products Section -->
-    <section class="products-section">
-        <h1>Featured Products</h1>
-        <p class="section-subtitle">Click "Quick View" to see product details</p>
+  <!-- ── Theme Toggle ────────────────────────────── -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+    </svg>
+    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
 
-        <div class="products-grid">
-            
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Headphones">
-                    <span class="badge">New</span>
-                </div>
-                <div class="product-info">
-                    <h3>Premium Headphones</h3>
-                    <p class="price">$299.99</p>
-                    <div class="rating">⭐⭐⭐⭐⭐ (124)</div>
-                    <button class="quick-view-btn" data-product="1">
-                        👁️ Quick View
-                    </button>
-                </div>
-            </div>
+  <!-- ── Page ────────────────────────────────────── -->
+  <div class="page">
+    <button class="about-btn" id="aboutBtn">About me</button>
+  </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Watch">
-                    <span class="badge sale">Sale</span>
-                </div>
-                <div class="product-info">
-                    <h3>Smart Watch Pro</h3>
-                    <p class="price">
-                        <span class="old-price">$399.99</span> $299.99
-                    </p>
-                    <div class="rating">⭐⭐⭐⭐☆ (89)</div>
-                    <button class="quick-view-btn" data-product="2">
-                        👁️ Quick View
-                    </button>
-                </div>
-            </div>
+  <!-- ══ MODAL ════════════════════════════════════ -->
+  <div class="overlay" id="overlay">
+    <div class="card" id="card" role="dialog" aria-modal="true" aria-label="About me">
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" alt="Sunglasses">
-                </div>
-                <div class="product-info">
-                    <h3>Designer Sunglasses</h3>
-                    <p class="price">$149.99</p>
-                    <div class="rating">⭐⭐⭐⭐⭐ (203)</div>
-                    <button class="quick-view-btn" data-product="3">
-                        👁️ Quick View
-                    </button>
-                </div>
-            </div>
+      <!-- Close -->
+      <button class="card-close" id="cardClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          <line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </button>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=400&fit=crop" alt="Sneakers">
-                    <span class="badge">Hot</span>
-                </div>
-                <div class="product-info">
-                    <h3>Running Sneakers</h3>
-                    <p class="price">$129.99</p>
-                    <div class="rating">⭐⭐⭐⭐☆ (156)</div>
-                    <button class="quick-view-btn" data-product="4">
-                        👁️ Quick View
-                    </button>
-                </div>
-            </div>
+      <!-- Avatar -->
+      <div class="card-avatar-wrap">
+        <img
+          class="card-avatar"
+          src="./@pfp_awk.jpeg"
+          alt="User avatar"
+          width="88" height="88"
+        />
+        <div class="card-status" title="Available for work"></div>
+      </div>
 
-        </div>
-    </section>
+      <!-- Identity -->
+      <h2 class="card-name">Shailendra K.</h2>
+      <p class="card-handle">@kousei · he/him</p>
 
-    <!-- Modal Overlay -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-product" id="modal">
-            
-            <!-- Close Button -->
-            <button class="modal-close" id="closeBtn">✕</button>
+      <!-- Bio -->
+      <p class="card-bio">
+        Creative developer building thoughtful digital experiences.
+        Passionate about design systems, motion, and clean code.
+      </p>
 
-            <!-- Modal Content -->
-            <div class="modal-content">
-                
-                <!-- Left: Product Image -->
-                <div class="modal-image">
-                    <img id="modalImg" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop" alt="Product">
-                </div>
+      <!-- Tags -->
+      <div class="card-tags">
+        <span class="tag">UI / UX</span>
+        <span class="tag">Frontend</span>
+        <span class="tag">Open Source</span>
+      </div>
 
-                <!-- Right: Product Details -->
-                <div class="modal-details">
-                    <span class="modal-badge" id="modalBadge">New Arrival</span>
-                    <h2 id="modalTitle">Premium Headphones</h2>
-                    <div class="modal-rating">
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
-                        <span class="reviews" id="modalReviews">(124 Reviews)</span>
-                    </div>
-                    <p class="modal-price" id="modalPrice">$299.99</p>
-                    
-                    <p class="modal-description" id="modalDescription">
-                        Experience premium sound quality with our flagship headphones. 
-                        Featuring noise cancellation, 30-hour battery life, and superior comfort.
-                    </p>
+      <!-- Divider -->
+      <div class="card-rule"></div>
 
-                    <div class="modal-features">
-                        <h4>Key Features:</h4>
-                        <ul id="modalFeatures">
-                            <li>✓ Active Noise Cancellation</li>
-                            <li>✓ 30-hour Battery Life</li>
-                            <li>✓ Premium Comfort Padding</li>
-                            <li>✓ Bluetooth 5.0</li>
-                        </ul>
-                    </div>
+      <!-- Social icons -->
+      <div class="card-socials">
+        <a class="social-link" href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a class="social-link" href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
 
-                    <div class="modal-options">
-                        <div class="option-group">
-                            <label>Color:</label>
-                            <div class="color-options">
-                                <span class="color-box" style="background: #000"></span>
-                                <span class="color-box" style="background: #fff; border: 1px solid #ddd"></span>
-                                <span class="color-box" style="background: #3b82f6"></span>
-                            </div>
-                        </div>
-                        <div class="option-group">
-                            <label>Quantity:</label>
-                            <div class="quantity-selector">
-                                <button class="qty-btn">-</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                        </div>
-                    </div>
+      <!-- CTA buttons -->
+      <div class="card-ctas">
+        <a class="cta-btn cta-primary" href="#" target="_blank" rel="noopener">
+          Portfolio ↗
+        </a>
+        <a class="cta-btn cta-ghost" href="#" target="_blank" rel="noopener">
+          Resume ↓
+        </a>
+      </div>
 
-                    <div class="modal-actions">
-                        <button class="btn-add-cart">🛒 Add to Cart</button>
-                        <button class="btn-buy-now">⚡ Buy Now</button>
-                    </div>
-                </div>
+      <!-- Footer info -->
+      <p class="card-location">📍 India &nbsp;·&nbsp; Available for freelance</p>
 
-            </div>
-
-        </div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

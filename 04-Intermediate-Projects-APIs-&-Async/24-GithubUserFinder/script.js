@@ -1,129 +1,290 @@
-const apiLink = 'https://api.github.com/users/'
+const landingPage = document.getElementById('landingPage');
+const profilePage = document.getElementById('profilePage');
+const errorPage = document.getElementById('errorPage');
 
-let searchInput = document.getElementById('searchInput')
-let searchBtn = document.getElementById('searchBtn')
-let userCard = document.getElementById('userCard')
-let emptyState = document.getElementById('emptyState')
-let loader = document.getElementById('loader')
-let avatar = document.getElementById('avatar')
-let userType = document.getElementById('userType')
-let name = document.getElementById('name')
-let username = document.getElementById('username')
-let bio = document.getElementById('bio')
-let repos = document.getElementById('repos')
-let followers = document.getElementById('followers')
-let following = document.getElementById('following')
-let created = document.getElementById('created')
-let profileLink = document.getElementById('profileLink')
-let reposLink = document.getElementById('reposLink')
-let errorState = document.getElementById('errorState')
-let recentList = document.getElementById('recentList')
-let clearAllBtn = document.getElementById('clearAllBtn')
+const landingSearchInput = document.getElementById('landingSearchInput');
+const landingSearchBtn = document.getElementById('landingSearchBtn');
+const navSearchInput = document.getElementById('navSearchInput');
 
-let searchInputStr = ''
-searchInput.addEventListener('input',()=>{
-    searchInputStr = searchInput.value.trim()
-})
+const loadingOverlay = document.getElementById('loadingOverlay');
 
-document.addEventListener('keydown',(event)=>{
-    if(event.key === 'Enter'){
-        userdata(searchInputStr)
+const themeToggles = document.querySelectorAll('.theme-toggle');
+const devCards = document.querySelectorAll('.dev-card');
+
+const backToSearchBtn = document.getElementById('backToSearchBtn');
+const profileNavBrand = document.getElementById('profileNavBrand');
+const errorNavBrand = document.getElementById('errorNavBrand');
+
+const profileAvatar = document.getElementById('profileAvatar');
+const profileName = document.getElementById('profileName');
+const profileUsername = document.getElementById('profileUsername');
+const profileBio = document.getElementById('profileBio');
+const followBtn = document.getElementById('followBtn');
+const followersCount = document.getElementById('followersCount');
+const followingCount = document.getElementById('followingCount');
+const reposCount = document.getElementById('reposCount');
+const profileLocation = document.getElementById('profileLocation');
+const profileWebsite = document.getElementById('profileWebsite');
+const profileCompany = document.getElementById('profileCompany');
+const profileJoined = document.getElementById('profileJoined');
+const locationItem = document.getElementById('locationItem');
+const websiteItem = document.getElementById('websiteItem');
+const companyItem = document.getElementById('companyItem');
+const joinedItem = document.getElementById('joinedItem');
+const reposGrid = document.getElementById('reposGrid');
+
+const errorDetail = document.getElementById('errorDetail');
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('githubFinderTheme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
     }
-})
-
-function showUserCard(){
-    loader.classList.add('hidden')
-    userCard.classList.remove('hidden')
-    emptyState.classList.add('hidden')
-}
-function showLoadingState(){
-    loader.classList.remove('hidden')
-    userCard.classList.add('hidden')
-    emptyState.classList.add('hidden')
 }
 
+function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('githubFinderTheme', isDark ? 'dark' : 'light');
+}
 
-function userdata(searchInputStr){
-    showLoadingState()
+themeToggles.forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+});
+
+function showPage(page) {
+    landingPage.classList.remove('active');
+    profilePage.classList.remove('active');
+    errorPage.classList.remove('active');
+    page.classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+function goHome() {
+    landingSearchInput.value = '';
+    navSearchInput.value = '';
+    showPage(landingPage);
+}
+
+backToSearchBtn.addEventListener('click', goHome);
+profileNavBrand.addEventListener('click', goHome);
+errorNavBrand.addEventListener('click', goHome);
+
+
+function showLoading() {
+    loadingOverlay.classList.remove('hidden');
+}
+
+function hideLoading() {
+    loadingOverlay.classList.add('hidden');
+}
+
+function formatNumber(num) {
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    }
+    if (num >= 1000) {
+        return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    }
+    return num.toString();
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+
+function getLanguageClass(language) {
+    if (!language) return 'lang-default';
+    const lang = language.toLowerCase().replace(/[^a-z]/g, '');
+    const supported = ['javascript', 'typescript', 'python', 'java', 'c', 'cpp', 'csharp', 'go', 'rust', 'ruby', 'php', 'swift', 'kotlin', 'html', 'css', 'scss', 'shell', 'vue'];
+    return supported.includes(lang) ? `lang-${lang}` : 'lang-default';
+}
+
+
+const GITHUB_API = 'https://api.github.com';
+
+async function fetchUser(username) {
+    const response = await fetch(`${GITHUB_API}/users/${username}`);
+    if (!response.ok) {
+        throw new Error('User not found');
+    }
+    return response.json();
+}
+
+async function fetchRepos(username) {
+    const response = await fetch(`${GITHUB_API}/users/${username}/repos?sort=stars&per_page=6`);
+    if (!response.ok) {
+        throw new Error('Could not fetch repos');
+    }
+    return response.json();
+}
+
+
+function renderProfile(user) {
+    profileAvatar.src = user.avatar_url;
+    profileAvatar.alt = user.login;
+    profileName.textContent = user.name || user.login;
+    profileUsername.textContent = `@${user.login}`;
+    profileBio.textContent = user.bio || 'No bio available';
+    followBtn.href = user.html_url;
+
+    followersCount.textContent = formatNumber(user.followers);
+    followingCount.textContent = formatNumber(user.following);
+    reposCount.textContent = formatNumber(user.public_repos);
+
+    if (user.location) {
+        profileLocation.textContent = user.location;
+        locationItem.classList.remove('hidden');
+    } else {
+        locationItem.classList.add('hidden');
+    }
+
+    if (user.blog) {
+        let website = user.blog;
+        if (!website.startsWith('http')) {
+            website = 'https://' + website;
+        }
+        profileWebsite.textContent = user.blog.replace(/^https?:\/\//, '');
+        profileWebsite.href = website;
+        websiteItem.classList.remove('hidden');
+    } else {
+        websiteItem.classList.add('hidden');
+    }
+
+    if (user.company) {
+        profileCompany.textContent = user.company;
+        companyItem.classList.remove('hidden');
+    } else {
+        companyItem.classList.add('hidden');
+    }
+    if (user.created_at) {
+        profileJoined.textContent = `Joined ${formatDate(user.created_at)}`;
+        joinedItem.classList.remove('hidden');
+    } else {
+        joinedItem.classList.add('hidden');
+    }
+}
+
+function renderRepos(repos) {
+    reposGrid.innerHTML = '';
+
+    if (repos.length === 0) {
+        reposGrid.innerHTML = '<p style="color: var(--text-secondary); font-style: italic;">No public repositories found.</p>';
+        return;
+    }
+
+    repos.forEach(repo => {
+        const card = document.createElement('a');
+        card.href = repo.html_url;
+        card.target = '_blank';
+        card.className = 'repo-card';
+
+        const languageClass = getLanguageClass(repo.language);
+
+        card.innerHTML = `
+            <div class="repo-header">
+                <div class="repo-title-container">
+                    <span class="material-symbols-outlined repo-icon">folder</span>
+                    <h4 class="repo-name">${repo.name}</h4>
+                </div>
+                <span class="repo-badge">${repo.private ? 'Private' : 'Public'}</span>
+            </div>
+            <p class="repo-description">${repo.description || 'No description'}</p>
+            <div class="repo-stats">
+                ${repo.language ? `
+                    <div class="repo-stat">
+                        <span class="lang-dot ${languageClass}"></span>
+                        ${repo.language}
+                    </div>
+                ` : ''}
+                <div class="repo-stat">
+                    <span class="material-symbols-outlined">star</span>
+                    ${formatNumber(repo.stargazers_count)}
+                </div>
+                <div class="repo-stat">
+                    <span class="material-symbols-outlined">call_split</span>
+                    ${formatNumber(repo.forks_count)}
+                </div>
+            </div>
+        `;
+
+        reposGrid.appendChild(card);
+    });
+}
+
+async function searchUser(username) {
+    const cleanUsername = username.trim().replace('@', '');
+
+    if (!cleanUsername) {
+        shakeElement(landingSearchInput);
+        shakeElement(navSearchInput);
+        return;
+    }
+
+    showLoading();
+
+    try {
+        const user = await fetchUser(cleanUsername);
+        const repos = await fetchRepos(cleanUsername);
+
+        renderProfile(user);
+        renderRepos(repos);
+
+        hideLoading();
+        showPage(profilePage);
+
+    } catch (error) {
+        hideLoading();
+        errorDetail.textContent = `Searched: @${cleanUsername}`;
+        showPage(errorPage);
+    }
+}
+
+function shakeElement(element) {
+    element.style.transition = 'transform 0.1s';
+    element.style.transform = 'translateX(-5px)';
     
-    let url = `${apiLink}${searchInputStr}`
-    fetch(url)
-        .then(response => {
-            if(!response.ok){
-                loader.classList.add('hidden')
-                errorState.classList.remove('hidden')
-                throw new Error('Not able to get the Response!!')
-            }
-            return response.json()
-        })
-        .then(data => {
-            errorState.classList.add('hidden')
-            displayUserInfo(data)
-        })
-        .catch(error => {
-            console.error('Error:', error)
-        })
+    setTimeout(() => {
+        element.style.transform = 'translateX(5px)';
+    }, 100);
+    
+    setTimeout(() => {
+        element.style.transform = 'translateX(-3px)';
+    }, 200);
+    
+    setTimeout(() => {
+        element.style.transform = 'translateX(0)';
+    }, 300);
 }
 
-function displayUserInfo(data){
-    showUserCard()
-    avatar.src = data.avatar_url
-    userType.textContent = data.type
-    name.textContent = data.name
-    username.textContent = `@${data.login}`
-    bio.textContent = data.bio
-    repos.textContent = data.public_repos
-    followers.textContent = data.followers
-    following.textContent = data.following
 
-    let date = new Date(data.created_at)
-    created.textContent = date.toLocaleDateString('en-US',{
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-    })
+landingSearchBtn.addEventListener('click', () => {
+    searchUser(landingSearchInput.value);
+});
 
-    profileLink.href = data.html_url
-    reposLink.href = data.html_url
-    handleRecentUser(data)
-}
+landingSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchUser(landingSearchInput.value);
+    }
+});
 
-let userArray = []
+navSearchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchUser(navSearchInput.value);
+    }
+});
 
-function handleRecentUser(data){
-    userArray.unshift(data)
-    userArray = userArray.slice(0,5) //userArray.[0].
-    recentList.innerHTML = ""
-    userArray.forEach(
-        item => {
-            recentList.insertAdjacentHTML('beforeend',returnRecentItem(item))
+devCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const username = card.dataset.username;
+        if (username) {
+            searchUser(username);
         }
-    )  
-}
+    });
+});
 
-function returnRecentItem(data){
-    return`<div class="recent-pill" data-index="${data.login}">
-                <img src="${data.avatar_url}">
-                <span>${data.name}</span>
-                <button class="remove-pill">×</button>
-            </div>`
-}
-
-recentList.addEventListener('click',(event)=>{
-    const btn = event.target.closest('.remove-pill')
-    if(!btn) return 
-    const userDiv = btn.closest('.recent-pill')
-
-    userArray = userArray.filter(
-        item => {
-            item.login !== userDiv.dataset.index
-            userDiv.remove()
-        }
-    )
-})
-
-clearAllBtn.addEventListener('click',()=>{
-    userArray = []
-    recentList.innerHTML = ''
-})
-
+initTheme();

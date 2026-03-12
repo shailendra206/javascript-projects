@@ -1,43 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>System Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
-    <div class="timer-container">
-        
-        <h1>Countdown Timer</h1>
-        <p class="subtitle">Traget Date : 5th Jan 2026 '05:45:00'</p>
 
-        <!-- Countdown Display -->
-        <div class="countdown">
-            <div class="time-unit">
-                <span class="number" id="days">00</span>
-                <span class="label">Days</span>
-            </div>
-            <div class="separator">:</div>
-            <div class="time-unit">
-                <span class="number" id="hours">00</span>
-                <span class="label">Hours</span>
-            </div>
-            <div class="separator">:</div>
-            <div class="time-unit">
-                <span class="number" id="minutes">00</span>
-                <span class="label">Minutes</span>
-            </div>
-            <div class="separator">:</div>
-            <div class="time-unit">
-                <span class="number" id="seconds">00</span>
-                <span class="label">Seconds</span>
-            </div>
-        </div>
+    <!-- Side Decorations -->
+    <div class="side-decor side-decor-left">TERMINAL_PROMPT_SECURE_ACCESS_ONLY_0001</div>
+    <div class="side-decor side-decor-right">CHRONOS_SUBSYSTEM_EST_1994</div>
 
-        <!-- Message when countdown ends -->
-        <div class="message" id="message">Yay !! It's celebration Time.</div>
+    <div class="page-wrapper">
+
+        <!-- ===== HEADER ===== -->
+        <header class="main-header">
+            <div class="header-left">
+                <span class="material-symbols-outlined header-icon">timer</span>
+                <h2 class="header-title">System Timer</h2>
+            </div>
+        </header>
+
+        <!-- ===== MAIN ===== -->
+        <main class="main-content">
+            <section class="section section-set-timer">
+                <div class="set-timer-card">
+                    <h1 class="set-timer-title">Set New Timer</h1>
+
+                    <div class="timer-input-grid">
+                        <div class="timer-input-group">
+                            <label class="timer-input-label">Days</label>
+                            <input class="timer-input" maxlength="2" placeholder="00" type="text" />
+                        </div>
+                        <div class="timer-input-group">
+                            <label class="timer-input-label">Hours</label>
+                            <input class="timer-input" maxlength="2" placeholder="00" type="text" />
+                        </div>
+                        <div class="timer-input-group">
+                            <label class="timer-input-label">Mins</label>
+                            <input class="timer-input" maxlength="2" placeholder="00" type="text" />
+                        </div>
+                        <div class="timer-input-group">
+                            <label class="timer-input-label">Secs</label>
+                            <input class="timer-input" maxlength="2" placeholder="00" type="text" />
+                        </div>
+                    </div>
+
+                    <button class="btn-set-timer">Set Timer</button>
+                </div>
+
+                <!-- <div class="decor-dots">
+                    <div class="dot dot-primary"></div>
+                    <div class="dot dot-dark"></div>
+                    <div class="dot dot-gray"></div>
+                </div> -->
+            </section>
+
+            <!-- ==========================================
+                 SECTION 2: COUNTDOWN (hidden by default)
+                 ========================================== -->
+            <section class="section section-countdown is-hidden">
+                <div class="countdown-inner">
+
+                    <div class="status-bar">
+                        <span class="status-label">Status:</span>
+                        <span class="status-value">Awaiting Command</span>
+                    </div>
+
+                    <div class="countdown-grid">
+                        <div class="countdown-box">
+                            <span class="countdown-number">00</span>
+                            <span class="countdown-unit">Days</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-number">12</span>
+                            <span class="countdown-unit">Hours</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span class="countdown-number">30</span>
+                            <span class="countdown-unit">Mins</span>
+                        </div>
+                        <div class="countdown-box countdown-box-active">
+                            <span class="countdown-number">45</span>
+                            <span class="countdown-unit">Secs</span>
+                        </div>
+                    </div>
+
+                    <div class="controls-row">
+                        <button class="btn-control btn-start">START</button>
+                        <button class="btn-control btn-pause">PAUSE</button>
+                        <button class="btn-control btn-reset">RESET</button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Target Event</span>
+                            <span class="stat-value">Launch Sequence Alpha</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Elapsed</span>
+                            <span class="stat-value" id="elapsedTime">142:33:12</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">System Load</span>
+                            <div class="progress-row">
+                                <div class="progress-track">
+                                    <div class="progress-fill" style="width: 42%;"></div>
+                                </div>
+                                <span class="progress-text">42%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="main-footer">
+            <p class="footer-copy">&copy; 2026 System Terminal</p>
+            <div class="footer-right">
+                <span class="footer-status">System Ready</span>
+            </div>
+        </footer>
 
     </div>
 

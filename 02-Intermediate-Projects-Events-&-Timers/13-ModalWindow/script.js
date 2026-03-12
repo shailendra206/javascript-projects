@@ -1,20 +1,19 @@
-const productsGrid = document.querySelector('.products-grid')
-const modalOverlay = document.querySelector('.modal-overlay')
-const closeBtn = document.querySelector('.modal-close')
+const aboutBtn = document.getElementById('aboutBtn')
+const overlay = document.getElementById('overlay')
+const cardClose = document.getElementById('cardClose')
+const themeToggle = document.getElementById('themeToggle')
 
-productsGrid.addEventListener('click',(e)=>{
-    const btn = e.target.closest('.quick-view-btn')
-    if(!btn) return
-    console.log(btn)
-    modalOverlay.classList.add('active')
+aboutBtn.addEventListener('click', () => {
+    overlay.classList.add('open')
+})
+cardClose.addEventListener('click', () => {
+    overlay.classList.remove('open')
 })
 
-closeBtn.addEventListener('click',()=>{
-    modalOverlay.classList.remove('active')
-})
-
-document.addEventListener('keydown',(e)=>{
-    if(e.key === 'Escape'){
-        modalOverlay.classList.remove('active')
+themeToggle.addEventListener('click', () => {
+    if(document.documentElement.dataset.theme === 'dark'){
+        document.documentElement.dataset.theme = 'light'
+    }else{
+        document.documentElement.dataset.theme = 'dark'
     }
 })

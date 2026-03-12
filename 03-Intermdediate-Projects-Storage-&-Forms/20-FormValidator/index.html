@@ -1,69 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validator</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Professional Form Validator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="container">
-        <div class="form-header">
-            <div class="icon">🚀</div>
-            <h1>Create Account</h1>
-            <p>Fill in the details below</p>
-        </div>
+    <div class="layout-container">
+        
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <h2 class="logo-text">Validator</h2>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+                </button>
+            </div>
+        </header>
 
-        <form class="form" id="signupForm">
-            <!-- Username -->
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    placeholder="johndoe"
-                >
-                <span class="error-msg" id="usernameError"></span>
+        <main class="main-content">
+            
+            <div class="form-card">
+                <div class="form-header">
+                    <h1 class="form-title">Create Account</h1>
+                    <p class="form-subtitle">Join the platform by filling out the professional registration form below.</p>
+                </div>
+
+                <form class="form" id="registrationForm" novalidate>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="text" 
+                                class="form-input" 
+                                id="username" 
+                                placeholder="e.g. jdoe_pro"
+                                required
+                                minlength="3"
+                                autocomplete="off"
+                            />
+                            <span class="material-symbols-outlined input-icon">person</span>
+                        </div>
+                        <span class="error-message" id="usernameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="email" 
+                                class="form-input" 
+                                id="email" 
+                                placeholder="name@company.com"
+                                required
+                                autocomplete="off"
+                            />
+                            <span class="material-symbols-outlined input-icon">mail</span>
+                        </div>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="password" 
+                                    class="form-input" 
+                                    id="password" 
+                                    placeholder="••••••••"
+                                    required
+                                    minlength="8"
+                                    autocomplete="off"
+                                />
+                                <button type="button" class="password-toggle" data-target="password">
+                                    <span class="material-symbols-outlined input-icon">visibility</span>
+                                </button>
+                            </div>
+                            <span class="error-message" id="passwordError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Confirm</label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="password" 
+                                    class="form-input" 
+                                    id="confirmPassword" 
+                                    placeholder="••••••••"
+                                    required
+                                    autocomplete="off"
+                                />
+                                <button type="button" class="password-toggle" data-target="confirmPassword">
+                                    <span class="material-symbols-outlined input-icon">visibility</span>
+                                </button>
+                            </div>
+                            <span class="error-message" id="confirmPasswordError"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span>Create Account</span>
+                            <span class="material-symbols-outlined btn-icon">arrow_forward</span>
+                        </button>
+                    </div>
+
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" class="form-link">Log in here</a></p>
+                    </div>
+
+                </form>
             </div>
 
-            <!-- Email -->
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input 
-                    type="text" 
-                    id="email" 
-                    placeholder="you@example.com"
-                >
-                <span class="error-msg" id="emailError"></span>
+            <div class="success-message" id="successMessage">
+                <div class="success-content">
+                    <span class="material-symbols-outlined success-icon">check_circle</span>
+                    <h2 class="success-title">Account Created!</h2>
+                    <p class="success-text">Your account has been successfully created. Welcome aboard!</p>
+                    <button class="reset-btn" id="resetBtn">Create Another</button>
+                </div>
             </div>
 
-            <!-- Password -->
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    placeholder="Min 6 characters"
-                >
-                <span class="error-msg" id="passwordError"></span>
-            </div>
+            <footer class="footer">
+                <div class="footer-copy">© 2026 Validator. Secure & Private.</div>
+            </footer>
 
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input 
-                    type="password" 
-                    id="confirmPassword" 
-                    placeholder="Re-enter password"
-                >
-                <span class="error-msg" id="confirmError"></span>
-            </div>
+        </main>
 
-            <!-- Submit Button -->
-            <button type="submit" class="btn-submit">Create Account</button>
-        </form>
-
-        <p class="login-link">Already have an account? <a href="#">Log in</a></p>
     </div>
 
     <script src="script.js"></script>

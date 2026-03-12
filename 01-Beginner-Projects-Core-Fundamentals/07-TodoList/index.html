@@ -1,73 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kyiv Task Manifest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    
-    <div class="container">
-        <div class="todo-wrapper">
-            
-            <!-- Header -->
-            <div class="header">
-                <h1>📝 My Todo List</h1>
+    <div class="dot-grid">
+        <div class="container">
+            <header class="header">
+                <div class="header-left">
+                    <div>
+                        <h1 class="header-title">Kyiv Task Manifest</h1>
+                        <p class="header-subtitle">Operator 01 // Sector: North</p>
+                    </div>
+                </div>
+                <div class="header-status">
+                    <p class="header-status-label">Status Report</p>
+                    <p class="header-status-value">0 Tasks Remaining</p>
+                </div>
+            </header>
 
+            <section class="add-mission-section">
+                <div class="add-mission-card">
+                    <h2 class="section-title">
+                        <span class="accent-star">*</span> Add New Mission
+                    </h2>
+                    <div class="add-mission-grid">
+                        <div class="field-mission-name">
+                            <label class="field-label">Mission Name</label>
+                            <input class="field-input field-input-lg" placeholder="Enter objective..." type="text" />
+                        </div>
+                        <div class="field-target-date">
+                            <label class="field-label">Target Date</label>
+                            <input class="field-input field-input-date" type="date" />
+                        </div>
+                        <div class="field-priority">
+                            <label class="field-label">Priority</label>
+                            <select class="field-select">
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div class="field-deploy">
+                            <button class="btn-deploy">Deploy Task</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="filter-bar">
+                <div class="tab-group">
+                    <button class="tab active-tab">All</button>
+                    <button class="tab tab-bordered">Active</button>
+                    <button class="tab tab-bordered">Completed</button>
+                </div>
+                <button class="btn-clear">Clear All Completed [X]</button>
             </div>
 
-            <!-- Input Section -->
-            <div class="input-section">
-                <input 
-                    type="text" 
-                    class="todo-input" 
-                    id="todoInput" 
-                    placeholder="Add a new task..."
-                >
-                <button class="add-btn">
-                    <span class="plus-icon">+</span>
-                </button>
-            </div>
+            <div class="task-list"></div>
 
-            <!-- Filter Tabs -->
-            <div class="filter-tabs">
-                <button class="tab active" data-filter="all">
-                    All 
-                    <!-- <span class="count" id="allCount">0</span> -->
+            <section class="empty-state-card">
+                <div class="empty-icon-wrapper">
+                    <div class="empty-icon-box">
+                        <span class="material-symbols-outlined empty-icon">description</span>
+                        <div class="empty-icon-close">
+                            <span class="material-symbols-outlined">close</span>
+                        </div>
+                    </div>
+                    <div class="empty-icon-shadow"></div>
+                </div>
+                <h3 class="empty-state-title">Manifest Clear</h3>
+                <p class="empty-state-desc">No active missions detected in this sector.</p>
+                <button class="btn-initialize">
+                    <span>INITIALIZE FIRST MISSION</span>
+                    <span class="material-symbols-outlined btn-initialize-arrow">arrow_forward</span>
                 </button>
-                <button class="tab" data-filter="active">
-                    Active 
-                    <!-- <span class="count" id="activeCount">0</span> -->
-                </button>
-                <button class="tab" data-filter="completed">
-                    Completed 
-                    <!-- <span class="count" id="completedCount">0</span> -->
-                </button>
-            </div>
+            </section>
 
-            <!-- Todo List -->
-            <ul class="todo-list" id="todoList">
-                <!-- Li -->
-            </ul>
-
-            <!-- Empty State -->
-            <div class="empty-state" id="emptyState" style="display: none;">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="#cbd5e1" stroke-width="2"/>
-                    <path d="M12 8V12L14.5 14.5" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <p>No tasks yet!</p>
-                <span>Add a task to get started</span>
-            </div>
-
-            <!-- Footer Actions -->
-            <div class="footer-actions">
-                <button class="clear-btn">
-                    Clear Completed
-                </button>
-            </div>
-
+            <footer class="footer">
+                <div class="footer-stars">* * *</div>
+                <div class="footer-info">
+                    <p class="footer-end">End of Manifest</p>
+                    <p class="footer-version">System Version 4.0.1 // Kyiv, Ukraine</p>
+                </div>
+            </footer>
         </div>
     </div>
 

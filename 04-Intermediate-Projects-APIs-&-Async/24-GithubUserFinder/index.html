@@ -3,182 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub User Finder</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GitHub Finder — Find Developers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app">
-        <!-- Floating Background Elements -->
-        <div class="bg-blur bg-blur-1"></div>
-        <div class="bg-blur bg-blur-2"></div>
-        <div class="bg-blur bg-blur-3"></div>
 
-        <!-- Main Container -->
-        <div class="container">
-            <!-- Header -->
-            <header class="header">
-                <div class="logo-badge">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                </div>
-                <h1>Find GitHub Users</h1>
-                <p>Discover developers around the world ✨</p>
-            </header>
+    <div class="page page-landing active" id="landingPage">
+        <nav class="navbar navbar-landing">
+            <div class="nav-brand">
+                <span class="nav-title">GitHub Finder</span>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-dark">dark_mode</span>
+                    <span class="material-symbols-outlined theme-icon-light">light_mode</span>
+                </button>
+            </div>
+        </nav>
 
-            <!-- Search Box -->
-            <div class="search-wrapper">
-                <div class="search-box">
-                    <div class="search-icon">
-                        🔍
+        <main class="landing-main">
+            <div class="landing-content">
+                <h1 class="landing-title">
+                    GitHub<br>
+                    <span class="landing-title-sub">Finder</span>
+                </h1>
+                <p class="landing-subtitle">Discover developers worldwide</p>
+
+                <div class="landing-search-wrapper">
+                    <div class="landing-input-group">
+                        <div class="landing-search-icon">
+                            <span class="material-symbols-outlined">search</span>
+                        </div>
+                        <input 
+                            type="text" 
+                            class="landing-search-input" 
+                            id="landingSearchInput"
+                            placeholder="Enter GitHub username..."
+                            autocomplete="off"
+                        >
                     </div>
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Search username..."
-                        autocomplete="off"
-                        spellcheck="false"
-                    >
-                    <button id="searchBtn" class="search-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                            <path d="M5 12h14"/>
-                            <path d="M12 5l7 7-7 7"/>
-                        </svg>
+                    <button class="landing-explore-btn" id="landingSearchBtn">
+                        Explore
                     </button>
                 </div>
-                
-                <!-- Error Toast -->
-                <div id="errorMessage" class="error-toast hidden">
-                    <span class="error-icon">😕</span>
-                    <span class="error-text"></span>
-                </div>
+
+                <section class="popular-section">
+                    <h4 class="section-label">Popular Developers</h4>
+                    <div class="dev-cards">
+                        <div class="dev-card" data-username="torvalds">
+                            <div class="dev-avatar">
+                                <img src="https://avatars.githubusercontent.com/u/1024025?v=4" alt="Linus Torvalds">
+                            </div>
+                            <div class="dev-info">
+                                <p class="dev-name">Linus Torvalds</p>
+                                <p class="dev-role">@torvalds</p>
+                            </div>
+                        </div>
+                        <div class="dev-card" data-username="gaearon">
+                            <div class="dev-avatar">
+                                <img src="https://avatars.githubusercontent.com/u/810438?v=4" alt="Dan Abramov">
+                            </div>
+                            <div class="dev-info">
+                                <p class="dev-name">Dan Abramov</p>
+                                <p class="dev-role">@gaearon</p>
+                            </div>
+                        </div>
+                        <div class="dev-card" data-username="sindresorhus">
+                            <div class="dev-avatar">
+                                <img src="https://avatars.githubusercontent.com/u/170270?v=4" alt="Sindre Sorhus">
+                            </div>
+                            <div class="dev-info">
+                                <p class="dev-name">Sindre Sorhus</p>
+                                <p class="dev-role">@sindresorhus</p>
+                            </div>
+                        </div>
+                        <div class="dev-card" data-username="yyx990803">
+                            <div class="dev-avatar">
+                                <img src="https://avatars.githubusercontent.com/u/499550?v=4" alt="Evan You">
+                            </div>
+                            <div class="dev-info">
+                                <p class="dev-name">Evan You</p>
+                                <p class="dev-role">@yyx990803</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+        </main>
 
-            <!-- Recent Searches Pills -->
-            <!-- <div id="recentSearches" class="recent-section ">
-                <span class="recent-label">Recent</span>
-                <div id="recentList" class="recent-pills">
-
-                </div>
-            </div> -->
-
-            <!-- Recent Searches Pills -->
-            <div id="recentSearches" class="recent-section">
-                <span class="recent-label">Recent</span>
-                <div id="recentList" class="recent-pills">
-                    <!-- Items will be added here Dynamically -->
-                </div>
-                <!-- Clear All Button -->
-                <button id="clearAllBtn" class="clear-all-btn">Clear All</button>
-            </div>
-
-            <!-- Loader -->
-            <div id="loader" class="loader hidden">
-                <div class="loader-dot"></div>
-                <div class="loader-dot"></div>
-                <div class="loader-dot"></div>
-            </div>
-
-            <!-- User Profile Card -->
-            <div id="userCard" class="profile-card hidden">
-                <!-- Profile Header -->
-                <div class="profile-header">
-                    <div class="avatar-wrapper">
-                        <img id="avatar" src="" alt="Avatar" class="avatar">
-                        <span id="userType" class="type-badge"></span>
-                    </div>
-                    
-                    <div class="profile-info">
-                        <h2 id="name" class="profile-name"></h2>
-                        <a id="username" href="" target="_blank" class="profile-username"></a>
-                    </div>
-                </div>
-
-                <!-- Bio -->
-                <p id="bio" class="profile-bio"></p>
-
-                <!-- Stats Row -->
-                <div class="stats-row">
-                    <div class="stat-chip">
-                        <span class="stat-emoji">📦</span>
-                        <span id="repos" class="stat-value">0</span>
-                        <span class="stat-name">repos</span>
-                    </div>
-                    <div class="stat-chip">
-                        <span class="stat-emoji">👥</span>
-                        <span id="followers" class="stat-value">0</span>
-                        <span class="stat-name">followers</span>
-                    </div>
-                    <div class="stat-chip">
-                        <span class="stat-emoji">💫</span>
-                        <span id="following" class="stat-value">0</span>
-                        <span class="stat-name">following</span>
-                    </div>
-                </div>
-
-                <!-- Info Tags -->
-                <div class="info-tags">
-                    <div id="locationTag" class="info-tag hidden">
-                        <span>📍</span>
-                        <span id="location"></span>
-                    </div>
-                    <div id="companyTag" class="info-tag hidden">
-                        <span>🏢</span>
-                        <span id="company"></span>
-                    </div>
-                    <div id="blogTag" class="info-tag hidden">
-                        <span>🔗</span>
-                        <a id="blog" href="" target="_blank"></a>
-                    </div>
-                    <div id="twitterTag" class="info-tag hidden">
-                        <span>𝕏</span>
-                        <a id="twitter" href="" target="_blank"></a>
-                    </div>
-                    <div id="createdTag" class="info-tag">
-                        <span>📅</span>
-                        <span id="created"></span>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <a id="profileLink" href="" target="_blank" class="btn-primary">
-                        View Profile
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </a>
-                    <a id="reposLink" href="" target="_blank" class="btn-secondary">
-                        Repositories
-                    </a>
-                </div>
-            </div>
-
-            <!-- Empty State -->
-            <div id="emptyState" class="empty-state ">
-                <div class="empty-illustration">
-                    <span>🧐</span>
-                </div>
-                <p>Search for a GitHub username to get started</p>
-            </div>
-
-            <!-- Error State - User Not Found -->
-            <div id="errorState" class="error-state hidden">
-                <div class="error-illustration">
-                    <span>😕</span>
-                </div>
-                <h3>User Not Found</h3>
-                <p>We couldn't find that username. Check spelling and try again!</p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <p>Made with 💜 using GitHub API</p>
+        <footer class="app-footer">
+            <span>© 2026 GitHub Finder</span>
         </footer>
+    </div>
+
+    <!-- ========================= -->
+    <!-- PROFILE PAGE -->
+    <!-- ========================= -->
+    <div class="page page-profile" id="profilePage">
+        <nav class="navbar navbar-main">
+            <div class="nav-brand" id="profileNavBrand">
+                <span class="nav-title">GitHub Finder</span>
+            </div>
+
+            <div class="nav-search-bar">
+                <span class="material-symbols-outlined search-icon-nav">search</span>
+                <input 
+                    type="text" 
+                    class="nav-search-input" 
+                    id="navSearchInput"
+                    placeholder="Search another user..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-dark">dark_mode</span>
+                    <span class="material-symbols-outlined theme-icon-light">light_mode</span>
+                </button>
+            </div>
+        </nav>
+
+        <main class="profile-main">
+            <div class="profile-grid">
+                <!-- Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="profile-card">
+                        <div class="profile-avatar-container">
+                            <div class="profile-avatar">
+                                <img src="" alt="Profile" id="profileAvatar">
+                            </div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <h1 class="profile-name" id="profileName">—</h1>
+                        <p class="profile-username" id="profileUsername">@—</p>
+                        <p class="profile-bio" id="profileBio">—</p>
+                        <div class="profile-actions">
+                            <a href="#" class="follow-btn" id="followBtn" target="_blank">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <p class="stat-value" id="followersCount">—</p>
+                                <p class="stat-label">Followers</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value" id="followingCount">—</p>
+                                <p class="stat-label">Following</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value" id="reposCount">—</p>
+                                <p class="stat-label">Repos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details-card">
+                        <div class="detail-item" id="locationItem">
+                            <span class="material-symbols-outlined">location_on</span>
+                            <span class="detail-text" id="profileLocation">—</span>
+                        </div>
+                        <div class="detail-item" id="websiteItem">
+                            <span class="material-symbols-outlined">link</span>
+                            <a href="#" class="detail-text detail-link" id="profileWebsite" target="_blank">—</a>
+                        </div>
+                        <div class="detail-item" id="companyItem">
+                            <span class="material-symbols-outlined">apartment</span>
+                            <span class="detail-text" id="profileCompany">—</span>
+                        </div>
+                        <div class="detail-item" id="joinedItem">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <span class="detail-text" id="profileJoined">—</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="profile-content">
+                    <div class="repos-header">
+                        <h3 class="repos-title">
+                            <span class="material-symbols-outlined">star</span>
+                            Top Repositories
+                        </h3>
+                    </div>
+                    <div class="repos-grid" id="reposGrid">
+                        <!-- Repos will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <span>© 2026 GitHub Finder</span>
+        </footer>
+    </div>
+
+    <!-- ========================= -->
+    <!-- ERROR PAGE -->
+    <!-- ========================= -->
+    <div class="page page-error" id="errorPage">
+        <nav class="navbar navbar-main">
+            <div class="nav-brand" id="errorNavBrand">
+                <span class="nav-title">GitHub Finder</span>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+                    <span class="material-symbols-outlined theme-icon-dark">dark_mode</span>
+                    <span class="material-symbols-outlined theme-icon-light">light_mode</span>
+                </button>
+            </div>
+        </nav>
+
+        <main class="error-main">
+            <div class="error-bg-icon">
+                <span class="material-symbols-outlined">person_off</span>
+            </div>
+            <div class="error-content">
+                <h1 class="error-title">User Not Found</h1>
+                <p class="error-description">The username you entered doesn't exist on GitHub. Please check the spelling and try again.</p>
+                <p class="error-detail" id="errorDetail">Searched: @username</p>
+                <div class="error-actions">
+                    <button class="error-btn-primary" id="backToSearchBtn">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Back to Search
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <span>© 2026 GitHub Finder</span>
+        </footer>
+    </div>
+
+    <!-- ========================= -->
+    <!-- LOADING OVERLAY -->
+    <!-- ========================= -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-spinner">
+            <span class="material-symbols-outlined loading-icon">progress_activity</span>
+            <p class="loading-text">Searching GitHub...</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
