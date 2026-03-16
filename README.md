@@ -34,7 +34,6 @@ A collection of JavaScript practice projects built to strengthen my frontend dev
 23. [Weather App](https://kousei-git.github.io/javascript-projects/23-weather-app/)
 24. [GitHub User Finder](https://kousei-git.github.io/javascript-projects/24-github-user-finder/)
 25. [Dictionary App](https://kousei-git.github.io/javascript-projects/25-dictionary-app/)
-26. [Image Slider](https://kousei-git.github.io/javascript-projects/26-image-slider/)
 
 ## Goals
 - Strengthen JavaScript fundamentals
